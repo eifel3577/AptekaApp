@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">AptekaApp</string>
+    <string name="retry">Повторить</string>
+    <string name="editSearhText">Введите название лекарства</string>
+    <string name="beginSearch">Начать поиск</string>
+    <string name="please_enter_drag_title">Пожалуйста,введите название лекарства</string>
+    //Exception messages
+    <string name="exception_message_generic">Произошла ошибка приложения</string>
+    <string name="exception_message_no_connection">Нет интернет соединения</string>
+    <string name="exception_message_user_not_found">Не удалось получить данные.Проверьте интернет соединение</string>
+</resources>
