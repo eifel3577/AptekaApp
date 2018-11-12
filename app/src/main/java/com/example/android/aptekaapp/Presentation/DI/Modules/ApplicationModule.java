@@ -1,13 +1,10 @@
 package com.example.android.aptekaapp.Presentation.DI.Modules;
 
-import android.arch.persistence.room.Room;
 import android.content.Context;
-import android.util.Log;
 
 
 import com.example.android.aptekaapp.Data.Cashe.DragCashe;
-import com.example.android.aptekaapp.Data.Cashe.db.Database.MyDatabase;
-import com.example.android.aptekaapp.Data.Cashe.db.DatabaseCashe;
+import com.example.android.aptekaapp.Data.Cashe.db.Database.DatabaseCashe;
 import com.example.android.aptekaapp.Data.Repository.DragDataRepository;
 import com.example.android.aptekaapp.Domain.Repository.DragRepository;
 import com.example.android.aptekaapp.Presentation.AndroidApplication;

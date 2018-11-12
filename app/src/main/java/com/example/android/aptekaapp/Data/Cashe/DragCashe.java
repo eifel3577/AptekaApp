@@ -2,12 +2,12 @@ package com.example.android.aptekaapp.Data.Cashe;
 
 
 
+import com.example.android.aptekaapp.Data.Cashe.db.Database.DataLoadedCallback;
 import com.example.android.aptekaapp.Data.Entity.DragEntity;
 
 import java.util.List;
 
 import io.reactivex.Observable;
-import io.reactivex.Single;
 
 public interface DragCashe {
 

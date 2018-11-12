@@ -6,11 +6,20 @@ import android.util.Log;
 
 
 import com.example.android.aptekaapp.Data.Cashe.DragCashe;
+import com.example.android.aptekaapp.Data.Cashe.db.Database.DataLoadedCallback;
+import com.example.android.aptekaapp.Data.Cashe.db.Database.DatabaseCashe;
+import com.example.android.aptekaapp.Data.Entity.DragEntity;
 import com.example.android.aptekaapp.Data.Net.Parsing.JsoupGetData;
 import com.example.android.aptekaapp.Data.Net.Parsing.JsoupGetDataImpl;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 /**
  * Фабрика которая создает различные вариации источников данных {@link DragDataStore}.
@@ -20,6 +29,7 @@ public class DragDataStoreFactory {
 
     private final Context context;
     private final DragCashe dragCache;
+    private Boolean isDataInDatabase;
 
     @Inject
     DragDataStoreFactory(@NonNull Context context, @NonNull DragCashe dragCache) {
@@ -32,20 +42,18 @@ public class DragDataStoreFactory {
      * @param dragTitle название лекарства
      */
     public DragDataStore create(String dragTitle) {
-        Log.d("1111","dragTitle = "+dragTitle);
-        DragDataStore dragDataStore;
-
-        //проверяет если база непустая то источник данных будет база (DatabaseDragDataStore)
-        //if (!this.dragCache.isExpired() && this.dragCache.isCached(dragTitle)) {
+            DragDataStore dragDataStore;
+            dragCache.isCached(dragTitle);
         if(this.dragCache.isCached(dragTitle)){
             Log.d("1111","грузим из кеша");
-            dragDataStore = new DatabaseDragDataStore(this.dragCache);
-        }
-        else {
-            dragDataStore = createParsingDataStore();
-        }
+                dragDataStore = new DatabaseDragDataStore(this.dragCache);
+            }
+            else {
+            Log.d("1111","грузим из сети");
+               dragDataStore = createParsingDataStore();
+            }
 
-        return dragDataStore;
+            return dragDataStore;
     }
 
     /**
@@ -55,4 +63,6 @@ public class DragDataStoreFactory {
         final JsoupGetData jsoupGetData = new JsoupGetDataImpl(this.context);
         return new ParsingDragDataStore(jsoupGetData, this.dragCache);
     }
+
+
 }
