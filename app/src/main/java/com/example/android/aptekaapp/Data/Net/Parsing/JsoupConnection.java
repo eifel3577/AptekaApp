@@ -56,6 +56,7 @@ public class JsoupConnection  implements Callable<List<DragEntity>> {
                         DragEntity dragEntity = new DragEntity();
                         dragEntity.setDragName(names.get(i).text());
                         dragEntity.setDragPrice(coasts.get(k).text());
+                        Log.d("1111","request = "+request);
                         dragEntity.setGroupName(request);
                         resultList.add(dragEntity);
                     }

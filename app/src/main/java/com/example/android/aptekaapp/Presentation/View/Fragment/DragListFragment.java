@@ -40,6 +40,9 @@ public class DragListFragment extends BaseFragment implements DragListView {
     /**обьект интерфейса,общего с активити хостом.Через этот интерфейс в активити хост будет идити команда,когда пользователь
      * нажмет на конкретном лекарстве в списке */
     private DragListListener dragListListener;
+    /**обьект интерфейса,общего с активити хостом.Через этот интерфейс в активити хост будет идити команда,когда пользователь
+     * нажмет на кнопку Повторить */
+    private RetryButtonClickListener retryButtonClickListener;
 
     /**
      * Реализация интерфейса нажатия на конкретном лекарстве
@@ -48,12 +51,18 @@ public class DragListFragment extends BaseFragment implements DragListView {
         void onDragClicked(final DragModel dragModel);
     }
 
+    /**реализация интерфейса нажатия на кнопку Повторить */
+    public interface RetryButtonClickListener {
+        void onRetryButtonClick();
+    }
+
     /**настройка общего интерфейса с активити хостом */
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        if (activity instanceof DragListListener) {
+        if (activity instanceof DragListListener&&activity instanceof RetryButtonClickListener) {
             this.dragListListener = (DragListListener) activity;
+            this.retryButtonClickListener = (RetryButtonClickListener) activity;
         }
     }
 
@@ -217,8 +226,10 @@ public class DragListFragment extends BaseFragment implements DragListView {
 
     /**нажатие на кнопке повторить */
     public void onButtonRetryClick(View v) {
-        Log.d("2810","DragListFragment onButtonRetryClick");
-        loadDragListByTitle(currentDragTitle());
+        Log.d("1111","DragListFragment onButtonRetryClick");
+        if(retryButtonClickListener!=null){
+            this.retryButtonClickListener.onRetryButtonClick();
+        }
     }
 
 

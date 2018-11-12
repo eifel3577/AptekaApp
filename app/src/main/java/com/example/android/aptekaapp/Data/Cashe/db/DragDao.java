@@ -17,11 +17,14 @@ import io.reactivex.Single;
 @Dao
 public interface DragDao {
 
-    @Query("SELECT * FROM dragentity WHERE groupName = :groupName")
-    Single<List<DragEntity>> getListDrags(String groupName);
+    //@Query("SELECT * FROM dragentity WHERE groupName = :groupName")
+    //Single<List<DragEntity>> getListDrags(String groupName);
+
+    @Query("SELECT * FROM dragentity")
+    Single<List<DragEntity>> getListDrags();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertDragList(List<DragEntity> dragEntities);
+    List<Long> insertDragList(List<DragEntity> dragEntities);
 
     @Query("DELETE FROM dragentity")
     void clearTable();

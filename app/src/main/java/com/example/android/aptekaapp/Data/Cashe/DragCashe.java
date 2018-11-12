@@ -15,7 +15,7 @@ public interface DragCashe {
      * Получает  {@link Observable} который будет транслировать {@link DragEntity}.
      *
      */
-    Single<List<DragEntity>> get(String groupName);
+    Observable<List<DragEntity>> get(String groupName);
 
     /**
      * Кладет список элементов в кэш

@@ -30,6 +30,6 @@ public class DatabaseDragDataStore implements DragDataStore {
 
     @Override
     public Observable<List<DragEntity>> dragEntityList(String dragTitle) {
-        return null;
+        return this.dragCache.get(dragTitle);
     }
 }

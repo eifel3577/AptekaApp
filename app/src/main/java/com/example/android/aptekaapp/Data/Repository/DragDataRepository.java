@@ -44,12 +44,12 @@ public class DragDataRepository implements DragRepository {
         this.dragEntityDataMapper = dragEntityDataMapper;
     }
 
+    /**создает DragDataStore (источник данных) через фабрику,полученные из источника данные
+     * конвертятся из DragEntity в Drag */
     @Override
     public Observable<List<Drag>> drags(String searchString) {
-        Log.d("2810","DragDataRepository drags, searchString = "+searchString);
-        final DragDataStore dragDataStore = this.dragDataStoreFactory.createParsingDataStore();
-        Log.d("2810","DragDataStore dragDataStore is null = "+String.valueOf(dragDataStore==null));
-        //трансформировать List DragEntity в List Drag
+        //final DragDataStore dragDataStore = this.dragDataStoreFactory.createParsingDataStore();
+        final DragDataStore dragDataStore = this.dragDataStoreFactory.create(searchString);
         return dragDataStore.dragEntityList(searchString).map(new Function<List<DragEntity>, List<Drag>>() {
             @Override
             public List<Drag> apply(@NonNull List<DragEntity> dragEntities) throws Exception {

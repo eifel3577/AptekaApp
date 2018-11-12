@@ -23,10 +23,14 @@ import javax.inject.Inject;
 
 
 /**
- * Презентер {@link DragListFragmentPresenter} работает с view {@link TestDragListFragment}
+ * Презентер {@link DragListFragmentPresenter} работает с view {@link DragListFragment}
  */
 @PerActivity
 public class DragListFragmentPresenter implements Presenter {
+    /**флаг крутится ли прогрессбар загрузки,по умолчанию нет */
+    private boolean showDownloadProgressBar = false;
+    /**флаг отображается ли кнопка Повторить,по умолчанию не отображается */
+    private boolean showRetryButton = false;
 
     /**обьект DragListView,с которым работает презентер */
     private DragListView viewListView;
@@ -49,9 +53,18 @@ public class DragListFragmentPresenter implements Presenter {
         this.viewListView = view;
     }
 
-    @Override public void resume() {}
+    @Override public void resume() {
+        if(showDownloadProgressBar){
+            this.viewListView.showLoading();
+        }
+        if(showRetryButton){
+            this.viewListView.showRetry();
+        }
+    }
 
-    @Override public void pause() {}
+    @Override public void pause() {
+
+    }
 
     /**отписывается от Disposable , обнуляет ссылку на прикрепленное вью {@link TestDragListFragment} */
     @Override public void destroy() {
@@ -63,7 +76,6 @@ public class DragListFragmentPresenter implements Presenter {
      * @param dragTitle строка поиска
      */
     public void initialize(String dragTitle) {
-        Log.d("2810","DragListFragmentPresenter initialize");
         this.loadDragList(dragTitle);
     }
 
@@ -72,7 +84,6 @@ public class DragListFragmentPresenter implements Presenter {
      * @param dragTitle строку поиска
      */
     private void loadDragList(String dragTitle) {
-        Log.d("2810","DragListFragmentPresenter loadDragList, dragTitle = "+dragTitle);
         this.hideViewRetry();
         this.showViewLoading();
         this.getUserList(dragTitle);
@@ -87,21 +98,25 @@ public class DragListFragmentPresenter implements Presenter {
 
     /**дает View команду показывать View с прогрессбаром индикатором загрузки */
     private void showViewLoading() {
+        showDownloadProgressBar = true;
         this.viewListView.showLoading();
     }
 
     /**дает View команду скрыть View с прогрессбаром индикатором загрузки*/
     private void hideViewLoading() {
+        showDownloadProgressBar = false;
         this.viewListView.hideLoading();
     }
 
     /**дает View команду показать View "Повторить" */
     private void showViewRetry() {
+        showRetryButton = true;
         this.viewListView.showRetry();
     }
 
     /**дает View команду скрыть View "Повторить" */
     private void hideViewRetry() {
+        showRetryButton = false;
         this.viewListView.hideRetry();
     }
 
@@ -122,10 +137,9 @@ public class DragListFragmentPresenter implements Presenter {
         this.viewListView.renderDragList(dragModelsCollection);
     }
 
-    /**вызывает метод обьекта слоя Domain GetUserList execute,передает ему
+    /**вызывает метод обьекта слоя Domain GetDragList execute,передает ему
      *  в параметр наблюдатель DragListObserver*/
     private void getUserList(String dragTitle) {
-        Log.d("2810","DragListFragmentPresenter getUserList");
         this.getDragListUseCase.execute(new DragListObserver(),GetDragList.Params.setDragSearch(dragTitle) );
     }
 
@@ -149,6 +163,10 @@ public class DragListFragmentPresenter implements Presenter {
         /**источник прислал данные (список юзеров) */
         @Override
         public void onNext(List<Drag> drag) {
+            if(drag.size()==0){
+                showViewRetry();
+            }
+            else
             DragListFragmentPresenter.this.showDragsCollectionInView(drag);
         }
     }

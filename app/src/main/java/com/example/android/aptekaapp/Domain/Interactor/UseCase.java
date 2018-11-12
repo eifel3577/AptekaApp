@@ -54,7 +54,7 @@ public abstract class UseCase<T, Params> {
      */
     public void execute(DisposableObserver<T> observer, Params params) {
         //Preconditions.checkNotNull(observer);
-        Log.d("2810","UseCase execute");
+
         final Observable<T> observable = this.buildUseCaseObservable(params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());

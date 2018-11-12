@@ -32,19 +32,13 @@ public class DragDataStoreFactory {
      * @param dragTitle название лекарства
      */
     public DragDataStore create(String dragTitle) {
+        Log.d("1111","dragTitle = "+dragTitle);
         DragDataStore dragDataStore;
 
         //проверяет если база непустая то источник данных будет база (DatabaseDragDataStore)
-        if (!this.dragCache.isExpired() && this.dragCache.isCached(dragTitle)) {
-            dragDataStore = new DatabaseDragDataStore(this.dragCache);
-        }
-        else {
-            //если нет то источником данных будет парсинг сети (ParsingDragDataStore)
-            dragDataStore = createParsingDataStore();
-        }
-
-
+        //if (!this.dragCache.isExpired() && this.dragCache.isCached(dragTitle)) {
         if(this.dragCache.isCached(dragTitle)){
+            Log.d("1111","грузим из кеша");
             dragDataStore = new DatabaseDragDataStore(this.dragCache);
         }
         else {
@@ -58,7 +52,6 @@ public class DragDataStoreFactory {
      * Создание {@link DragDataStore} для получения данных через парсинг сети
      */
     public DragDataStore createParsingDataStore() {
-        Log.d("2810","DragDataStoreFactory createParsingDataStore");
         final JsoupGetData jsoupGetData = new JsoupGetDataImpl(this.context);
         return new ParsingDragDataStore(jsoupGetData, this.dragCache);
     }
