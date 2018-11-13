@@ -30,12 +30,14 @@ public class DragDataStoreFactory {
 
     /**
      * Создание источника данных {@link DragDataStore}
+     * Если данные в кеше есть и не устарели(загружены не более 10 минут назад,
+     * то назначается источник данных база данных,если нет то сеть (через парсинг)
      * @param dragTitle название лекарства
      */
     public DragDataStore create(String dragTitle) {
         DragDataStore dragDataStore;
 
-        if(this.dragCache.isCached(dragTitle)){
+        if(!this.dragCache.isExpired()&&this.dragCache.isCached(dragTitle)){
             Log.d("1112","грузим из кеша");
                 dragDataStore = new DatabaseDragDataStore(this.dragCache);
             }

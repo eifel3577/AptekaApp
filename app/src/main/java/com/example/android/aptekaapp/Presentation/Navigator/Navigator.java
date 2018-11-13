@@ -47,7 +47,6 @@ public class Navigator {
 
         if (context != null) {
             Intent intentToLaunch =  DragSearchActivity.getCallingIntent(context,searchText);
-            Log.d("2810","Navigator navigateToDragList");
             context.startActivity(intentToLaunch);
         }
     }
