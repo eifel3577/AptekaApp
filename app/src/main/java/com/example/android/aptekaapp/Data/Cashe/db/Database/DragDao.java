@@ -30,4 +30,7 @@ public interface DragDao {
 
     @Query("DELETE FROM dragentity")
     void clearTable();
+
+    @Query("SELECT * FROM dragentity WHERE groupName = :groupName")
+    Maybe<List<DragEntity>> isTableEmpty(String groupName);
 }

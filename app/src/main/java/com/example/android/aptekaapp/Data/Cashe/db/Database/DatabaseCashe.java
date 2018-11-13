@@ -13,6 +13,7 @@ import com.example.android.aptekaapp.Presentation.AndroidApplication;
 
 import org.reactivestreams.Publisher;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
@@ -37,7 +38,8 @@ public class DatabaseCashe implements DragCashe {
 
     MyDatabase dragstoreServiceDatabase;
     private final DragDao dragDao;
-    private Boolean v;
+    private String isDataInDatabase;
+
 
     @Inject
     public DatabaseCashe() {
@@ -71,38 +73,43 @@ public class DatabaseCashe implements DragCashe {
         dragDao.insertDragList(list);
     }
 
+
     @Override
-    public boolean isCached(final String groupName) {
-        checkTable(groupName);
-        return getV();
+    public boolean isCached(String dragTitle) {
+        isDataAvailable(dragTitle);
+        if(isDataInDatabase!=null){
+            if(isDataInDatabase.equals("dataInDatabase")){
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 
-
-    private void checkTable(final String groupName){
-        dragDao.getListDrags(groupName).
+    public void isDataAvailable(String dragTitle){
+        dragDao.getListDrags(dragTitle).
                 subscribeOn(Schedulers.newThread()).
                 observeOn(AndroidSchedulers.mainThread()).
                 subscribe(new Consumer<List<DragEntity>>() {
-            @Override
-            public void accept(@NonNull List<DragEntity> dragEntities) throws Exception {
-                if(dragEntities.size()>0) setV(true);
-                else setV(false);
-            }
-        });
+                    @Override
+                    public void accept(@NonNull List<DragEntity> dragEntities) throws Exception {
+                        if(dragEntities.size()>0) {
+                            isDataInDatabase = "dataInDatabase";
+                        }
+                        else isDataInDatabase = "dataIsNotInDatabase";
+                    }
+                });
     }
 
-    public Boolean getV() {
-        return v;
-    }
 
-    public void setV(Boolean v) {
-        this.v = v;
-    }
 
     @Override
     public boolean isExpired() {
         return false;
     }
+
+
+
 
 
 
