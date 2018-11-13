@@ -8,11 +8,14 @@ import android.util.Log;
 import com.example.android.aptekaapp.Presentation.DI.Components.DaggerUserComponent;
 import com.example.android.aptekaapp.Presentation.DI.Components.UserComponent;
 import com.example.android.aptekaapp.Presentation.DI.HasComponent;
+import com.example.android.aptekaapp.Presentation.Model.DragModel;
 import com.example.android.aptekaapp.Presentation.View.Fragment.DragListFragment;
 import com.example.android.aptekaapp.R;
 
 
-public class DragSearchActivity extends BaseActivity implements HasComponent<UserComponent> {
+public class DragSearchActivity extends BaseActivity
+        implements HasComponent<UserComponent>,
+        DragListFragment.RetryButtonClickListener,DragListFragment.DragListListener {
 
     /**константа для строки поиска,которая пришла в интенте */
     private static final String INTENT_EXTRA_PARAM_SEARCH_STRING = "dragstoreserviceapp.INTENT_EXTRA_PARAM_SEARCH_STRING";
@@ -73,5 +76,18 @@ public class DragSearchActivity extends BaseActivity implements HasComponent<Use
     @Override
     public UserComponent getComponent() {
         return userComponent;
+    }
+
+    /**обработка нажатия на кнопку Повторить в DragListFragment.Вызывает SearchActivity
+     * чтобы пользователь мог снова ввести запрос */
+    @Override
+    public void onRetryButtonClick() {
+        this.navigator.navigateToSearchActivity(this);
+    }
+
+    /**обработка нажатия на конкретном лекарстве в списке */
+    @Override
+    public void onDragClicked(DragModel dragModel) {
+
     }
 }

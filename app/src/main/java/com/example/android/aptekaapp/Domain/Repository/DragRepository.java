@@ -7,6 +7,7 @@ import com.example.android.aptekaapp.Domain.Drag;
 import java.util.List;
 
 import io.reactivex.Observable;
+import io.reactivex.Single;
 
 /**
  * Интерфейс который представляет собой Репозиторий для получения {@link Drag}

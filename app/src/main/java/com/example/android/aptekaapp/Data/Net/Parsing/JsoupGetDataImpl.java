@@ -39,12 +39,10 @@ public class JsoupGetDataImpl implements JsoupGetData {
 
     @Override
     public Observable<List<DragEntity>> dragEntityList(final String search) {
-        Log.d("2810","JsoupGetDataImpl dragEntityList");
         return Observable.create(new ObservableOnSubscribe<List<DragEntity>>() {
             @Override
             public void subscribe(@NonNull ObservableEmitter<List<DragEntity>> em) throws Exception {
                 if (isThereInternetConnection()) {
-                    Log.d("2810","JsoupGetDataImpl dragEntityList yes connection");
                     try {
                         List<DragEntity>dragEntityList = getDragEntitiesFromJsoup(search);
                         if (dragEntityList != null) {
@@ -57,7 +55,6 @@ public class JsoupGetDataImpl implements JsoupGetData {
                         em.onError(new NetworkConnectionException(e.getCause()));
                     }
                 } else {
-                    Log.d("2810","JsoupGetDataImpl dragEntityList no connection ");
                     em.onError(new NetworkConnectionException());
                 }
             }
@@ -66,7 +63,6 @@ public class JsoupGetDataImpl implements JsoupGetData {
 
 
     private List<DragEntity> getDragEntitiesFromJsoup(String search) throws MalformedURLException {
-        Log.d("2810","JsoupGetDataImpl getDragEntitiesFromJsoup");
         return JsoupConnection.createGET(search).connectToJsoup();
     }
 

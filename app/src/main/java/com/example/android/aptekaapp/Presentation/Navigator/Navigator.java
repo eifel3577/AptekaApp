@@ -6,6 +6,7 @@ import android.util.Log;
 
 
 import com.example.android.aptekaapp.Presentation.View.Activity.DragSearchActivity;
+import com.example.android.aptekaapp.Presentation.View.Activity.SearchActivity;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -46,9 +47,13 @@ public class Navigator {
 
         if (context != null) {
             Intent intentToLaunch =  DragSearchActivity.getCallingIntent(context,searchText);
-            Log.d("2810","Navigator navigateToDragList");
             context.startActivity(intentToLaunch);
         }
+    }
+
+    public void navigateToSearchActivity(Context context){
+        Intent intentToSearchActivity = SearchActivity.getCallingIntent(context);
+        context.startActivity(intentToSearchActivity);
     }
 
     /**

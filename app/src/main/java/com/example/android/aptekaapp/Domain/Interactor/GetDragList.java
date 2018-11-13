@@ -33,7 +33,6 @@ public class GetDragList extends UseCase<List<Drag>, GetDragList.Params> {
     /**реализация метода родителя.Создает Observable */
     @Override
     Observable<List<Drag>> buildUseCaseObservable(Params params) {
-        Log.d("2810","GetDragList buildUseCaseObservable");
         return this.userRepository.drags(params.dragSearch);
     }
 

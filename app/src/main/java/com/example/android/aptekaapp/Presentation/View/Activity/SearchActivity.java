@@ -1,6 +1,8 @@
 package com.example.android.aptekaapp.Presentation.View.Activity;
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -15,6 +17,10 @@ import com.example.android.aptekaapp.databinding.ActivitySearchBinding;
 public class SearchActivity extends BaseActivity {
 
     private ActivitySearchBinding binding;
+
+    public static Intent getCallingIntent(Context context) {
+        return new Intent(context, SearchActivity.class);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

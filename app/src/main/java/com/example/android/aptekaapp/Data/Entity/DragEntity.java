@@ -9,12 +9,8 @@ import com.google.gson.annotations.SerializedName;
  * Drag Entity используется в Data слое
  */
 
-@Entity
+@Entity(tableName = "dragentity")
 public class DragEntity {
-
-    public DragEntity() {
-        //empty
-    }
 
     @PrimaryKey(autoGenerate = true)
     public long primaryKey;

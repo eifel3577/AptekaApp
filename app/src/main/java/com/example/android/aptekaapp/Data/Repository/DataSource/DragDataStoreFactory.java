@@ -21,6 +21,7 @@ public class DragDataStoreFactory {
     private final Context context;
     private final DragCashe dragCache;
 
+
     @Inject
     DragDataStoreFactory(@NonNull Context context, @NonNull DragCashe dragCache) {
         this.context = context.getApplicationContext();
@@ -29,37 +30,32 @@ public class DragDataStoreFactory {
 
     /**
      * Создание источника данных {@link DragDataStore}
+     * Если данные в кеше есть и не устарели(загружены не более 10 минут назад,
+     * то назначается источник данных база данных,если нет то сеть (через парсинг)
      * @param dragTitle название лекарства
      */
     public DragDataStore create(String dragTitle) {
         DragDataStore dragDataStore;
 
-        //проверяет если база непустая то источник данных будет база (DatabaseDragDataStore)
-        if (!this.dragCache.isExpired() && this.dragCache.isCached(dragTitle)) {
-            dragDataStore = new DatabaseDragDataStore(this.dragCache);
-        }
-        else {
-            //если нет то источником данных будет парсинг сети (ParsingDragDataStore)
-            dragDataStore = createParsingDataStore();
-        }
+        if(!this.dragCache.isExpired()&&this.dragCache.isCached(dragTitle)){
+            Log.d("1112","грузим из кеша");
+                dragDataStore = new DatabaseDragDataStore(this.dragCache);
+            }
+            else {
+            Log.d("1112","грузим из сети");
+               dragDataStore = createParsingDataStore();
+            }
 
-
-        if(this.dragCache.isCached(dragTitle)){
-            dragDataStore = new DatabaseDragDataStore(this.dragCache);
-        }
-        else {
-            dragDataStore = createParsingDataStore();
-        }
-
-        return dragDataStore;
+            return dragDataStore;
     }
 
     /**
      * Создание {@link DragDataStore} для получения данных через парсинг сети
      */
     public DragDataStore createParsingDataStore() {
-        Log.d("2810","DragDataStoreFactory createParsingDataStore");
         final JsoupGetData jsoupGetData = new JsoupGetDataImpl(this.context);
         return new ParsingDragDataStore(jsoupGetData, this.dragCache);
     }
+
+
 }

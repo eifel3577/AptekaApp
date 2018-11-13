@@ -3,8 +3,7 @@ package com.example.android.aptekaapp.Presentation.DI.Components;
 import android.content.Context;
 
 
-import com.example.android.aptekaapp.Data.Cashe.db.Database.MyDatabase;
-import com.example.android.aptekaapp.Data.Cashe.db.DatabaseCashe;
+import com.example.android.aptekaapp.Data.Cashe.db.Database.DatabaseCashe;
 import com.example.android.aptekaapp.Domain.Repository.DragRepository;
 import com.example.android.aptekaapp.Presentation.DI.Modules.ApplicationModule;
 import com.example.android.aptekaapp.Presentation.View.Activity.BaseActivity;

@@ -7,7 +7,6 @@ import com.example.android.aptekaapp.Data.Entity.DragEntity;
 import java.util.List;
 
 import io.reactivex.Observable;
-import io.reactivex.Single;
 
 public interface DragCashe {
 
@@ -15,7 +14,7 @@ public interface DragCashe {
      * Получает  {@link Observable} который будет транслировать {@link DragEntity}.
      *
      */
-    Single<List<DragEntity>> get(String groupName);
+    Observable<List<DragEntity>> get(String groupName);
 
     /**
      * Кладет список элементов в кэш
