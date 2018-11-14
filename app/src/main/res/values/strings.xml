@@ -8,4 +8,6 @@
     <string name="exception_message_generic">Произошла ошибка приложения</string>
     <string name="exception_message_no_connection">Нет интернет соединения</string>
     <string name="exception_message_user_not_found">Не удалось получить данные.Проверьте интернет соединение</string>
+    <string name="specify_search">Уточнить поиск</string>
+    <string name="drag_not_found">Данное лекарство не найдено.Попробуйте снова,уточнив поиск</string>
 </resources>

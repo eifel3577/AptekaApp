@@ -82,6 +82,7 @@ public class DragListFragment extends BaseFragment implements DragListView {
         setRetainInstance(true);
     }
 
+    /**инициализация обьекта даггера */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -184,7 +185,6 @@ public class DragListFragment extends BaseFragment implements DragListView {
     private void loadDragListByTitle(String dragTitle) {
 
         if(this.presenter!=null) {
-            Log.d("2810","DragListFragment loadDragListByTitle");
             this.presenter.initialize(dragTitle);
         }
     }
@@ -214,19 +214,16 @@ public class DragListFragment extends BaseFragment implements DragListView {
 
     @Override
     public void hideRetry() {
-
         binding.rlRetry.setVisibility(View.GONE);
     }
 
     @Override
     public void showError(String message) {
-
         this.showToastMessage(message);
     }
 
     /**нажатие на кнопке повторить */
     public void onButtonRetryClick(View v) {
-        Log.d("1111","DragListFragment onButtonRetryClick");
         if(retryButtonClickListener!=null){
             this.retryButtonClickListener.onRetryButtonClick();
         }
