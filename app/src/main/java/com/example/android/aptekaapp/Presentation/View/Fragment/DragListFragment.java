@@ -42,7 +42,7 @@ public class DragListFragment extends BaseFragment implements DragListView {
     private DragListListener dragListListener;
     /**обьект интерфейса,общего с активити хостом.Через этот интерфейс в активити хост будет идити команда,когда пользователь
      * нажмет на кнопку Повторить */
-    private RetryButtonClickListener retryButtonClickListener;
+    private SpecifyButtonClickListener specifyButtonClickListener;
 
     /**
      * Реализация интерфейса нажатия на конкретном лекарстве
@@ -52,17 +52,17 @@ public class DragListFragment extends BaseFragment implements DragListView {
     }
 
     /**реализация интерфейса нажатия на кнопку Повторить */
-    public interface RetryButtonClickListener {
-        void onRetryButtonClick();
+    public interface SpecifyButtonClickListener {
+        void onSpecifyButtonClick();
     }
 
     /**настройка общего интерфейса с активити хостом */
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        if (activity instanceof DragListListener&&activity instanceof RetryButtonClickListener) {
+        if (activity instanceof DragListListener&&activity instanceof SpecifyButtonClickListener) {
             this.dragListListener = (DragListListener) activity;
-            this.retryButtonClickListener = (RetryButtonClickListener) activity;
+            this.specifyButtonClickListener = (SpecifyButtonClickListener) activity;
         }
     }
 
@@ -218,14 +218,25 @@ public class DragListFragment extends BaseFragment implements DragListView {
     }
 
     @Override
+    public void showSpecifyScreen() {binding.rlSearchUnsuccess.setVisibility(View.VISIBLE);}
+
+    @Override
+    public void hideSpecifyScreen() {binding.rlSearchUnsuccess.setVisibility(View.GONE);}
+
+    @Override
     public void showError(String message) {
         this.showToastMessage(message);
     }
 
     /**нажатие на кнопке повторить */
     public void onButtonRetryClick(View v) {
-        if(retryButtonClickListener!=null){
-            this.retryButtonClickListener.onRetryButtonClick();
+        this.loadDragListByTitle(currentDragTitle());
+    }
+
+    /**нажатие на кнопке уточнить поиск */
+    public void onButtonSpecifyClick(View v) {
+        if(specifyButtonClickListener!=null){
+            this.specifyButtonClickListener.onSpecifyButtonClick();
         }
     }
 

@@ -35,6 +35,7 @@ public class DragEntityDataMapper {
             drag = new Drag();
             drag.setDragName(dragEntity.getDragName());
             drag.setDragPrice(dragEntity.getDragPrice());
+            drag.setDragPhoto(dragEntity.getDragPhoto());
 
         }
         return drag;

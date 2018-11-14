@@ -11,6 +11,9 @@ import com.example.android.aptekaapp.Presentation.View.Activity.SearchActivity;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
+import static android.support.v4.content.IntentCompat.FLAG_ACTIVITY_CLEAR_TASK;
+
 /**
  *
  * Класс обеспечивающий навигацию в приложении
@@ -53,6 +56,7 @@ public class Navigator {
 
     public void navigateToSearchActivity(Context context){
         Intent intentToSearchActivity = SearchActivity.getCallingIntent(context);
+        intentToSearchActivity.addFlags(FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intentToSearchActivity);
     }
 

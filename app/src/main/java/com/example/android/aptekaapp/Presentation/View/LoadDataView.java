@@ -27,6 +27,12 @@ public interface LoadDataView {
      */
     void hideRetry();
 
+    /**показывает View с экраном Уточнить поиск */
+    void showSpecifyScreen();
+
+    /**скрывает View с экраном Уточнить поиск  */
+    void hideSpecifyScreen();
+
     /**
      * Показывает сообщение о ошибке
      *

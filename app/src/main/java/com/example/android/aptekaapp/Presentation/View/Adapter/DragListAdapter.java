@@ -5,11 +5,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
 import com.example.android.aptekaapp.Presentation.Model.DragModel;
 import com.example.android.aptekaapp.R;
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -26,6 +28,9 @@ import butterknife.BindView;
  * адаптер для управления списком{@link DragModel}.
  */
 public class DragListAdapter extends RecyclerView.Adapter<DragListAdapter.DragViewHolder> {
+
+
+    Picasso picasso;
 
     /**интерфейс для обработки нажатия на юзере.совместный интерфейс с UserFragment */
     public interface OnItemClickListener {
@@ -46,6 +51,9 @@ public class DragListAdapter extends RecyclerView.Adapter<DragListAdapter.DragVi
         this.layoutInflater =
                 (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.dragsCollection = Collections.emptyList();
+        //TODO пикассо получать из даггера!
+        picasso = new Picasso.Builder(context).
+                build();
     }
 
     /**возвращает размер коллекции */
@@ -65,6 +73,7 @@ public class DragListAdapter extends RecyclerView.Adapter<DragListAdapter.DragVi
         //TODO кроме названия добавить цену
         holder.dragTitle.setText(dragModel.getDragName());
         holder.dragPrice.setText(dragModel.getDragPrice());
+        picasso.load(dragModel.getDragPhoto()).into(holder.dragImage);
         holder.dragTitle.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 if (DragListAdapter.this.onItemClickListener != null) {
@@ -105,11 +114,14 @@ public class DragListAdapter extends RecyclerView.Adapter<DragListAdapter.DragVi
         TextView dragTitle;
         @BindView(R.id.dragPrice)
         TextView dragPrice;
+        @BindView(R.id.drag_image)
+        ImageView dragImage;
 
         DragViewHolder(View itemView) {
             super(itemView);
             dragTitle = itemView.findViewById(R.id.dragName);
             dragPrice = itemView.findViewById(R.id.dragPrice);
+            dragImage = itemView.findViewById(R.id.drag_image);
         }
     }
 }

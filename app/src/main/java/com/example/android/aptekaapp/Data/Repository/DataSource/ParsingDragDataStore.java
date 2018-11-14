@@ -32,11 +32,15 @@ public class ParsingDragDataStore implements DragDataStore {
     @Override
     public Observable<List<DragEntity>> dragEntityList(final String dragTitle) {
 
-        //при получении данных они автоматически кладутся в кеш(базу данных)
         return this.jsoupGetData.dragEntityList(dragTitle).doOnNext(new Consumer<List<DragEntity>>() {
+
             @Override
             public void accept(@NonNull List<DragEntity> dragEntityList) throws Exception {
-                 ParsingDragDataStore.this.dragCache.put(dragEntityList);
+                if(ParsingDragDataStore.this.dragCache.isCached(dragTitle)) {
+                    ParsingDragDataStore.this.dragCache.evictAll();
+                    ParsingDragDataStore.this.dragCache.put(dragEntityList);
+                }
+                else ParsingDragDataStore.this.dragCache.put(dragEntityList);
             }
         });
     }

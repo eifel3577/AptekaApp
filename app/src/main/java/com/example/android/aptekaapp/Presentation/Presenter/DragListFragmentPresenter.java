@@ -23,7 +23,7 @@ import javax.inject.Inject;
 
 
 /**
- * Презентер {@link DragListFragmentPresenter} работает с view {@link DragListFragment}
+ * Презентер {@link DragListFragmentPresenter} работает с view
  */
 @PerActivity
 public class DragListFragmentPresenter implements Presenter {
@@ -31,6 +31,8 @@ public class DragListFragmentPresenter implements Presenter {
     private boolean showDownloadProgressBar = false;
     /**флаг отображается ли кнопка Повторить,по умолчанию не отображается */
     private boolean showRetryButton = false;
+    /**флаг отображается ли экран уточнить поиск */
+    private boolean showSpecifyScreen = false;
 
     /**обьект DragListView,с которым работает презентер */
     private DragListView viewListView;
@@ -60,13 +62,16 @@ public class DragListFragmentPresenter implements Presenter {
         if(showRetryButton){
             this.viewListView.showRetry();
         }
+        if(showSpecifyScreen){
+            this.viewListView.showSpecifyScreen();
+        }
     }
 
     @Override public void pause() {
 
     }
 
-    /**отписывается от Disposable , обнуляет ссылку на прикрепленное вью {@link TestDragListFragment} */
+    /**отписывается от Disposable , обнуляет ссылку на прикрепленное вью  */
     @Override public void destroy() {
         this.getDragListUseCase.dispose();
         this.viewListView = null;
@@ -112,6 +117,16 @@ public class DragListFragmentPresenter implements Presenter {
     private void showViewRetry() {
         showRetryButton = true;
         this.viewListView.showRetry();
+    }
+
+    private void showSpecifyScreen(){
+        showSpecifyScreen = true;
+        this.viewListView.showSpecifyScreen();
+    }
+
+    private void hideSpecifyScreen() {
+        showSpecifyScreen = false;
+        this.viewListView.hideSpecifyScreen();
     }
 
     /**дает View команду скрыть View "Повторить" */
@@ -164,9 +179,10 @@ public class DragListFragmentPresenter implements Presenter {
         @Override
         public void onNext(List<Drag> drag) {
             if(drag.size()==0){
-                showViewRetry();
+                showSpecifyScreen();
             }
             else
+            Log.d("1112","из кеша пришло "+drag.size()+" элементов");
             DragListFragmentPresenter.this.showDragsCollectionInView(drag);
         }
     }

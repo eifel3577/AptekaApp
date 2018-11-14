@@ -15,7 +15,7 @@ import com.example.android.aptekaapp.R;
 
 public class DragSearchActivity extends BaseActivity
         implements HasComponent<UserComponent>,
-        DragListFragment.RetryButtonClickListener,DragListFragment.DragListListener {
+        DragListFragment.SpecifyButtonClickListener,DragListFragment.DragListListener {
 
     /**константа для строки поиска,которая пришла в интенте */
     private static final String INTENT_EXTRA_PARAM_SEARCH_STRING = "dragstoreserviceapp.INTENT_EXTRA_PARAM_SEARCH_STRING";
@@ -81,7 +81,7 @@ public class DragSearchActivity extends BaseActivity
     /**обработка нажатия на кнопку Повторить в DragListFragment.Вызывает SearchActivity
      * чтобы пользователь мог снова ввести запрос */
     @Override
-    public void onRetryButtonClick() {
+    public void onSpecifyButtonClick() {
         this.navigator.navigateToSearchActivity(this);
     }
 

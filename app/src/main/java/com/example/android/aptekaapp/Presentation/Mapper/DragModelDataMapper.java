@@ -36,6 +36,7 @@ public class DragModelDataMapper {
         final DragModel dragModel = new DragModel();
         dragModel.setDragName(drag.getDragName());
         dragModel.setDragPrice(drag.getDragPrice());
+        dragModel.setDragPhoto(drag.getDragPhoto());
         return dragModel;
     }
 

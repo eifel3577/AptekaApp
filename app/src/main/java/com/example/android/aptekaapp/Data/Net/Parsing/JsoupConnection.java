@@ -31,7 +31,6 @@ public class JsoupConnection  implements Callable<List<DragEntity>> {
     }
 
     static JsoupConnection createGET(String url) throws MalformedURLException {
-        Log.d("2810","JsoupConnection createGET");
         return new JsoupConnection(url);
     }
 
@@ -41,37 +40,50 @@ public class JsoupConnection  implements Callable<List<DragEntity>> {
     }
 
     public List<DragEntity> connectToJsoup(){
-        Log.d("2810","JsoupConnection connectToJsoup");
+
         List<DragEntity>resultList = new ArrayList<>();
         try {
             Document document = Jsoup.connect(this.url).get();
-            Log.d("2810","JsoupConnection connectToJsoup document is null "+String.valueOf(document==null));
-            Elements vacancyName = document.getElementsByClass("goodstext");
-            Log.d("2810","JsoupConnection connectToJsoup vacancyName is null "+String.valueOf(vacancyName==null));
-            for(Element element:vacancyName){
-                Elements names = element.getElementsByClass("goodsname");
-                Elements coasts = element.getElementsByClass("goodscoast");
-                for(int i=0;i<names.size();i++){
-                    for(int k=0;k<coasts.size();k++){
-                        DragEntity dragEntity = new DragEntity();
-                        dragEntity.setDragName(names.get(i).text());
-                        dragEntity.setGroupName(request);
-                        if(coasts.get(k).text().length()==0){
-                            continue;
-                        }
-                        else {
-                            dragEntity.setDragPrice(coasts.get(k).text());
-                        }
-                        resultList.add(dragEntity);
-                    }
-                }
-            }
+            Elements titleAndPriceElements = document.getElementsByClass("goodstext");
+            Log.d("1212",String.valueOf(titleAndPriceElements.size()));
+            Elements photoElements = document.getElementsByClass("tovarphoto");
+            Log.d("1212",String.valueOf(photoElements.size()));
+            //Elements photos = photoElements.select("img");
+            //Log.d("1212",String.valueOf(photos.size()));
+            resultList = populateList(titleAndPriceElements,photoElements);
         }
         catch (IOException e){
             e.printStackTrace();
         }
+
         return resultList;
     }
+
+
+    private List<DragEntity> populateList(Elements titleAndPriceElements,Elements photoElements){
+        List<DragEntity>result = new ArrayList<>();
+        Elements photos = photoElements.select("img");
+        for(int i=0;i<titleAndPriceElements.size();i++){
+            Elements names = titleAndPriceElements.get(i).getElementsByClass("goodsname");
+            Elements coasts = titleAndPriceElements.get(i).getElementsByClass("goodscoast");
+            for(int k=0;k<names.size();k++){
+                DragEntity dragEntity = new DragEntity();
+                dragEntity.setDragPhoto(photos.get(i).absUrl("src"));
+                dragEntity.setDragName(names.get(k).text());
+                dragEntity.setGroupName(request);
+                if (coasts.get(k).text().length() == 0) {
+                    continue;
+                } else {
+                    dragEntity.setDragPrice(coasts.get(k).text());
+                }
+                result.add(dragEntity);
+            }
+        }
+
+        return result;
+    }
+
+
 
     private String cyr2lat(char ch){
         switch (ch){

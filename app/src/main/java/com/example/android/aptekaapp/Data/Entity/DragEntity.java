@@ -18,9 +18,11 @@ public class DragEntity {
 
     private String groupName;
 
-
     @SerializedName("drag_name")
     private String dragName;
+
+    @SerializedName("drag_photo")
+    private String dragPhoto;
 
     @SerializedName("drag_price")
     private String dragPrice;
@@ -41,7 +43,6 @@ public class DragEntity {
         this.dragPrice = dragPrice;
     }
 
-
     public String getGroupName() {
         return groupName;
     }
@@ -50,4 +51,7 @@ public class DragEntity {
         this.groupName = groupName;
     }
 
+    public String getDragPhoto() {return dragPhoto;}
+
+    public void setDragPhoto(String dragPhoto) {this.dragPhoto = dragPhoto;}
 }
