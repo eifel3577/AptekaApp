@@ -36,11 +36,7 @@ public class ParsingDragDataStore implements DragDataStore {
 
             @Override
             public void accept(@NonNull List<DragEntity> dragEntityList) throws Exception {
-                if(ParsingDragDataStore.this.dragCache.isCached(dragTitle)) {
-                    ParsingDragDataStore.this.dragCache.evictAll();
-                    ParsingDragDataStore.this.dragCache.put(dragEntityList);
-                }
-                else ParsingDragDataStore.this.dragCache.put(dragEntityList);
+                ParsingDragDataStore.this.dragCache.put(dragEntityList);
             }
         });
     }
