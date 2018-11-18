@@ -17,7 +17,7 @@ import com.example.android.aptekaapp.Presentation.DI.Components.DaggerUserCompon
 import com.example.android.aptekaapp.Presentation.DI.Components.UserComponent;
 import com.example.android.aptekaapp.Presentation.DI.HasComponent;
 import com.example.android.aptekaapp.Presentation.Presenter.SearchActivityPresenter;
-import com.example.android.aptekaapp.Presentation.View.DragListView;
+import com.example.android.aptekaapp.Presentation.View.Fragment.DragListFragment;
 import com.example.android.aptekaapp.R;
 import com.example.android.aptekaapp.databinding.ActivitySearchBinding;
 
@@ -27,6 +27,23 @@ import javax.inject.Inject;
 
 
 public class SearchActivity extends BaseActivity implements HasComponent<UserComponent> {
+
+
+    private UserComponent userComponent;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_container_layout);
+        this.initializeActivity();
+        this.initializeInjector();
+    }
+
+    private void initializeActivity() {
+        addFragment(R.id.fragmentContainer, DragListFragment.getOfDragTitle(searchString));
+    }
+
+
 
     @Inject
     SearchActivityPresenter presenter;

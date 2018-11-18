@@ -21,7 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Presentation.View.Activity.DragSearchActivity"/>
+        <activity android:name=".Presentation.View.Activity.DragListActivity"/>
     </application>
 
 </manifest>

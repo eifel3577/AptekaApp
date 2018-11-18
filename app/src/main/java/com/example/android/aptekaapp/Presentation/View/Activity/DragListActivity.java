@@ -13,7 +13,7 @@ import com.example.android.aptekaapp.Presentation.View.Fragment.DragListFragment
 import com.example.android.aptekaapp.R;
 
 
-public class DragSearchActivity extends BaseActivity
+public class DragListActivity extends BaseActivity
         implements HasComponent<UserComponent>,
         DragListFragment.SpecifyButtonClickListener,DragListFragment.DragListListener {
 
@@ -25,12 +25,12 @@ public class DragSearchActivity extends BaseActivity
     private String searchString;
     private UserComponent userComponent;
 
-    /**обработка интента,с помощью которого было вызвано текущее активити DragSearchActivity
+    /**обработка интента,с помощью которого было вызвано текущее активити DragListActivity
      * @param context контекст ,необходим для передачи интента
      * @param searchString строка поиска,введеная пользователем в SearchActivity */
     public static Intent getCallingIntent(Context context, String searchString) {
-        Log.d("2810","DragSearchActivity getCallingIntent");
-        Intent callingIntent = new Intent(context, DragSearchActivity.class);
+        Log.d("2810","DragListActivity getCallingIntent");
+        Intent callingIntent = new Intent(context, DragListActivity.class);
         callingIntent.putExtra(INTENT_EXTRA_PARAM_SEARCH_STRING, searchString);
         return callingIntent;
     }
@@ -38,8 +38,8 @@ public class DragSearchActivity extends BaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("2810","DragSearchActivity onCreate");
-        setContentView(R.layout.drag_search_activity);
+        Log.d("2810","DragListActivity onCreate");
+        setContentView(R.layout.fragment_container_layout);
         this.initializeActivity(savedInstanceState);
         this.initializeInjector();
     }
@@ -58,7 +58,7 @@ public class DragSearchActivity extends BaseActivity
     private void initializeActivity(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
             this.searchString = getIntent().getStringExtra(INTENT_EXTRA_PARAM_SEARCH_STRING);
-            Log.d("2810","DragSearchActivity initializeActivity, searchString = "+searchString);
+            Log.d("2810","DragListActivity initializeActivity, searchString = "+searchString);
             addFragment(R.id.fragmentContainer, DragListFragment.getOfDragTitle(searchString));
         } else {
             this.searchString = savedInstanceState.getString(INSTANCE_STATE_SEARCH_STRING);

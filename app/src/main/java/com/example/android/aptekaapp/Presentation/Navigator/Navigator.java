@@ -2,10 +2,9 @@ package com.example.android.aptekaapp.Presentation.Navigator;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 
-import com.example.android.aptekaapp.Presentation.View.Activity.DragSearchActivity;
+import com.example.android.aptekaapp.Presentation.View.Activity.DragListActivity;
 import com.example.android.aptekaapp.Presentation.View.Activity.SearchActivity;
 
 import javax.inject.Inject;
@@ -34,7 +33,7 @@ public class Navigator {
      */
     public void navigateToDragSearchScreen(Context context) {
         if (context != null) {
-            //Intent intentToLaunch = DragSearchActivity.getCallingIntent(context);
+            //Intent intentToLaunch = DragListActivity.getCallingIntent(context);
             //context.startActivity(intentToLaunch);
         }
     }
@@ -49,7 +48,7 @@ public class Navigator {
     public void navigateToDragList(Context context,String searchText) {
 
         if (context != null) {
-            Intent intentToLaunch =  DragSearchActivity.getCallingIntent(context,searchText);
+            Intent intentToLaunch =  DragListActivity.getCallingIntent(context,searchText);
             context.startActivity(intentToLaunch);
         }
     }
