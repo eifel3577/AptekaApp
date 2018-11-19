@@ -86,6 +86,6 @@ public class DragListActivity extends BaseActivity
     /**обработка нажатия на конкретном лекарстве в списке */
     @Override
     public void onDragClicked(DragModel dragModel) {
-
+        this.navigator.navigateToDragDetails(this,dragModel.getDragName());
     }
 }

@@ -173,7 +173,6 @@ public class DragListFragment extends BaseFragment implements DragListView {
      * @param dragModel обьект лекарства на котором кликнули*/
     @Override
     public void viewDrag(DragModel dragModel) {
-
         if (this.dragListListener != null) {
             this.dragListListener.onDragClicked(dragModel);
         }

@@ -5,6 +5,7 @@ import android.content.Intent;
 
 
 import com.example.android.aptekaapp.Presentation.View.Activity.DragListActivity;
+import com.example.android.aptekaapp.Presentation.View.Activity.DragProductCardActivity;
 import com.example.android.aptekaapp.Presentation.View.Activity.SearchActivity;
 
 import javax.inject.Inject;
@@ -64,10 +65,10 @@ public class Navigator {
      *
      * @param context контекст нужный для открытия соответствующего активити
      */
-    public void navigateToDragDetails(Context context, int userId) {
+    public void navigateToDragDetails(Context context, String dragName) {
         if (context != null) {
-            //Intent intentToLaunch = UserDetailsActivity.getCallingIntent(context, userId);
-            //context.startActivity(intentToLaunch);
+            Intent intentToLaunch = DragProductCardActivity.getCallingIntent(context, dragName);
+            context.startActivity(intentToLaunch);
         }
     }
 }

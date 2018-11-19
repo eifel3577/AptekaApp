@@ -48,6 +48,7 @@ public class DragDataRepository implements DragRepository {
      * конвертятся из DragEntity в Drag */
     @Override
     public Observable<List<Drag>> drags(String searchString) {
+
         //final DragDataStore dragDataStore = this.dragDataStoreFactory.createParsingDataStore();
         final DragDataStore dragDataStore = this.dragDataStoreFactory.create(searchString);
         return dragDataStore.dragEntityList(searchString).map(new Function<List<DragEntity>, List<Drag>>() {
