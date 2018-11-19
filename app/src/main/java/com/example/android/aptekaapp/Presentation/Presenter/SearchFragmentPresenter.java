@@ -24,7 +24,7 @@ import io.reactivex.functions.Function;
 import io.reactivex.subjects.PublishSubject;
 
 @PerActivity
-public class SearchActivityPresenter implements Presenter {
+public class SearchFragmentPresenter implements Presenter {
 
     private SearchActivity activity;
     private final GetDragList getDragListUseCase;
@@ -34,8 +34,8 @@ public class SearchActivityPresenter implements Presenter {
     PublishSubject<String> subject = PublishSubject.create();
 
     @Inject
-    public SearchActivityPresenter(GetDragList getUserListUserCase,
-    DragModelDataMapper dragModelDataMapper) {
+    public SearchFragmentPresenter(GetDragList getUserListUserCase,
+                                   DragModelDataMapper dragModelDataMapper) {
         this.getDragListUseCase = getUserListUserCase;
         this.dragModelDataMapper = dragModelDataMapper;
     }
@@ -55,7 +55,7 @@ public class SearchActivityPresenter implements Presenter {
                     @Override
                     public void accept(List<Drag> drags) throws Exception {
                         //TODO it's test implementation, rewrite after testing
-                        activity.showUsers(drags);
+                        //activity.showUsers(drags);
                     }
                 });
     }

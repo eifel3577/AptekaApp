@@ -2,11 +2,10 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-        <import type="android.view.View" alias="v"/>
 
         <variable
-            name="searchActivity"
-            type="com.example.android.aptekaapp.Presentation.View.Activity.SearchActivity"/>
+            name="searchFragment"
+            type="com.example.android.aptekaapp.Presentation.View.Fragment.SearchFragment"/>
 
     </data>
 
@@ -24,7 +23,6 @@
         <Button
             android:layout_width="wrap_content"
             android:id="@+id/searchButton"
-            android:onClick="@{searchActivity::clickOnSearchButton}"
             android:layout_gravity="center"
             android:text="@string/beginSearch"
             android:layout_height="wrap_content" />
