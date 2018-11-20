@@ -17,6 +17,7 @@ import com.example.android.aptekaapp.Presentation.View.Fragment.DragListFragment
 import com.example.android.aptekaapp.R;
 import com.example.android.aptekaapp.databinding.ActivityProductCardBinding;
 
+
 public class DragProductCardActivity extends BaseActivity
         implements HasComponent<UserComponent> {
 
@@ -26,7 +27,7 @@ public class DragProductCardActivity extends BaseActivity
     private String dragTitle;
     private PagerSlidingTabStrip tabs;
     private ViewPager pager;
-    ActivityProductCardBinding productCardBinding;
+    private ActivityProductCardBinding productCardBinding;
 
     public static Intent getCallingIntent(Context context, String dragName) {
         Intent callingIntent = new Intent(context, DragProductCardActivity.class);
@@ -39,7 +40,6 @@ public class DragProductCardActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         this.dragTitle = getIntent().getStringExtra(INTENT_EXTRA_DRAG_NAME);
         this.initializeActivity();
-        this.initToolbar();
         this.initView();
     }
 
@@ -53,9 +53,6 @@ public class DragProductCardActivity extends BaseActivity
         productCardBinding.setActivityProductCard(this);
     }
 
-    private void initToolbar(){
-        setSupportActionBar(productCardBinding.toolbar);
-    }
 
     private void initView(){
         productCardBinding.pager.setAdapter(new TabsAdapter(getSupportFragmentManager(),this));

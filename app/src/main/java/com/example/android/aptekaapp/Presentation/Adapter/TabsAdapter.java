@@ -6,6 +6,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.example.android.aptekaapp.Presentation.View.Fragment.DragInformationFragment;
+import com.example.android.aptekaapp.Presentation.View.Fragment.DragInstructionFragment;
+import com.example.android.aptekaapp.Presentation.View.Fragment.DragPropertiesFragment;
+
 public class TabsAdapter extends FragmentPagerAdapter {
 
     private String[] titles = { "Информация",
@@ -20,13 +24,13 @@ public class TabsAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch(position){
             case 0:{
-                //return MainFragment.newInstance(position);
+                return DragInformationFragment.newInstance();
             }
             case 1:{
-                //return DailyStatisticsFragment.newInstance(position);
+                return DragInstructionFragment.newInstance();
             }
             case 2:{
-                //return HistoryFragment.newInstance(position);
+                return DragPropertiesFragment.newInstance();
             }
         }
         return null;
