@@ -21,7 +21,7 @@
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/for_tab_and_toolbar"
+        android:background="@color/colorPrimary"
         android:textColor="@color/white"
         android:elevation="4dp"
         app:pstsIndicatorColor="@color/tab_strip"
@@ -39,6 +39,26 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:text="Купить"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:text="Купить в 1 клик"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
 
 </LinearLayout>
 

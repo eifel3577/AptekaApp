@@ -48,8 +48,6 @@ public class JsoupConnection  implements Callable<List<DragEntity>> {
             Log.d("1212",String.valueOf(titleAndPriceElements.size()));
             Elements photoElements = document.getElementsByClass("tovarphoto");
             Log.d("1212",String.valueOf(photoElements.size()));
-            //Elements photos = photoElements.select("img");
-            //Log.d("1212",String.valueOf(photos.size()));
             resultList = populateList(titleAndPriceElements,photoElements);
         }
         catch (IOException e){

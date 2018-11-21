@@ -1,9 +1,17 @@
 package com.example.android.aptekaapp.Data.Entity;
 
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
 import java.util.HashMap;
 
+@Entity(tableName = "details")
 public class DragEntityDetails {
+
+    @PrimaryKey(autoGenerate = true)
+    public long primaryKey;
+
 
     private HashMap<String,String>properties;
     private String generalInformation;

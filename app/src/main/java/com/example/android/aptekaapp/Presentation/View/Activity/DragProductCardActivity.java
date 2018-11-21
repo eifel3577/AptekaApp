@@ -11,17 +11,23 @@ import android.util.Log;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.example.android.aptekaapp.Presentation.Adapter.TabsAdapter;
+import com.example.android.aptekaapp.Presentation.DI.Components.DaggerUserComponent;
 import com.example.android.aptekaapp.Presentation.DI.Components.UserComponent;
 import com.example.android.aptekaapp.Presentation.DI.HasComponent;
 import com.example.android.aptekaapp.Presentation.View.Fragment.DragListFragment;
 import com.example.android.aptekaapp.R;
 import com.example.android.aptekaapp.databinding.ActivityProductCardBinding;
 
+import javax.inject.Inject;
+
 
 public class DragProductCardActivity extends BaseActivity
         implements HasComponent<UserComponent> {
 
     private static final String INTENT_EXTRA_DRAG_NAME = "intent_extra_frag_name";
+
+    @Inject
+    DragProductCardPresenter dragProductCardPresenter;
 
     private UserComponent userComponent;
     private String dragTitle;
@@ -40,6 +46,7 @@ public class DragProductCardActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         this.dragTitle = getIntent().getStringExtra(INTENT_EXTRA_DRAG_NAME);
         this.initializeActivity();
+        this.initializeInjector();
         this.initView();
     }
 
@@ -51,6 +58,14 @@ public class DragProductCardActivity extends BaseActivity
     private void initializeActivity() {
         productCardBinding = DataBindingUtil.setContentView(this,R.layout.activity_product_card);
         productCardBinding.setActivityProductCard(this);
+    }
+
+    /**строит компонент userComponent.ApplicationComponent и ActivityModule получает из BaseActivity */
+    private void initializeInjector() {
+        this.userComponent = DaggerUserComponent.builder()
+                .applicationComponent(getApplicationComponent())
+                .activityModule(getActivityModule())
+                .build();
     }
 
 
