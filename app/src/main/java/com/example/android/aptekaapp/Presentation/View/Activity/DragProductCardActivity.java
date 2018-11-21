@@ -14,12 +14,14 @@ import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.example.android.aptekaapp.Presentation.Adapter.TabsAdapter;
+
 import com.example.android.aptekaapp.Presentation.DI.Components.DaggerUserComponent;
 import com.example.android.aptekaapp.Presentation.DI.Components.UserComponent;
 import com.example.android.aptekaapp.Presentation.DI.HasComponent;
 import com.example.android.aptekaapp.Presentation.Presenter.DragProductCardPresenter;
 import com.example.android.aptekaapp.Presentation.View.ApplicationView;
 import com.example.android.aptekaapp.Presentation.View.Fragment.DragListFragment;
+
 import com.example.android.aptekaapp.R;
 import com.example.android.aptekaapp.databinding.ActivityProductCardBinding;
 
@@ -78,7 +80,7 @@ public class DragProductCardActivity extends BaseActivity
     }
 
     private void initializeActivity() {
-        productCardBinding = DataBindingUtil.setContentView(this,R.layout.activity_product_card);
+        productCardBinding = DataBindingUtil.setContentView(this, R.layout.activity_product_card);
         productCardBinding.setActivityProductCard(this);
     }
 

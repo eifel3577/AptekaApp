@@ -3,6 +3,7 @@ package com.example.android.aptekaapp.Domain.Repository;
 
 
 import com.example.android.aptekaapp.Domain.Drag;
+import com.example.android.aptekaapp.Domain.DragDetails;
 
 import java.util.List;
 
@@ -21,10 +22,5 @@ public interface DragRepository {
      */
     Observable<List<Drag>> drags(String dragSearch);
 
-    /**
-     * @return  {@link Observable} который будет транслировать конкретного {@link Drag}.
-     * @param dragId ID юзера который будет транслироваться
-     */
-    //TODO получение конкретного лекарства по названию реализовать позже
-    //Observable<Drag> drag(final int dragId);
+    Observable<List<DragDetails>> dragDetails(String dragSearch);
 }

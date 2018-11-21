@@ -38,12 +38,10 @@ public class DragDataStoreFactory {
         DragDataStore dragDataStore;
 
         if(!this.dragCache.isExpired()&&this.dragCache.isCached(dragTitle)){
-            Log.d("1112","грузим из кеша");
                 dragDataStore = new DatabaseDragDataStore(this.dragCache);
             }
             else {
-            Log.d("1112","грузим из сети");
-               dragDataStore = createParsingDataStore();
+                dragDataStore = createParsingDataStore();
             }
 
             return dragDataStore;

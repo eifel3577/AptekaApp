@@ -9,6 +9,7 @@ import com.example.android.aptekaapp.Data.Entity.Mapper.DragEntityDataMapper;
 import com.example.android.aptekaapp.Data.Repository.DataSource.DragDataStore;
 import com.example.android.aptekaapp.Data.Repository.DataSource.DragDataStoreFactory;
 import com.example.android.aptekaapp.Domain.Drag;
+import com.example.android.aptekaapp.Domain.DragDetails;
 import com.example.android.aptekaapp.Domain.Repository.DragRepository;
 
 import java.util.ArrayList;
@@ -49,7 +50,6 @@ public class DragDataRepository implements DragRepository {
     @Override
     public Observable<List<Drag>> drags(String searchString) {
 
-        //final DragDataStore dragDataStore = this.dragDataStoreFactory.createParsingDataStore();
         final DragDataStore dragDataStore = this.dragDataStoreFactory.create(searchString);
         return dragDataStore.dragEntityList(searchString).map(new Function<List<DragEntity>, List<Drag>>() {
             @Override
@@ -59,5 +59,8 @@ public class DragDataRepository implements DragRepository {
         });
     }
 
-
+    @Override
+    public Observable<List<DragDetails>> dragDetails(String dragSearch) {
+        return null;
+    }
 }
