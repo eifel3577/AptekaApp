@@ -1,6 +1,7 @@
 package com.example.android.aptekaapp.Presentation.View.Activity;
 
 
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -8,12 +9,16 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.example.android.aptekaapp.Presentation.Adapter.TabsAdapter;
 import com.example.android.aptekaapp.Presentation.DI.Components.DaggerUserComponent;
 import com.example.android.aptekaapp.Presentation.DI.Components.UserComponent;
 import com.example.android.aptekaapp.Presentation.DI.HasComponent;
+import com.example.android.aptekaapp.Presentation.Presenter.DragProductCardPresenter;
+import com.example.android.aptekaapp.Presentation.View.ApplicationView;
 import com.example.android.aptekaapp.Presentation.View.Fragment.DragListFragment;
 import com.example.android.aptekaapp.R;
 import com.example.android.aptekaapp.databinding.ActivityProductCardBinding;
@@ -22,7 +27,7 @@ import javax.inject.Inject;
 
 
 public class DragProductCardActivity extends BaseActivity
-        implements HasComponent<UserComponent> {
+        implements ApplicationView, HasComponent<UserComponent> {
 
     private static final String INTENT_EXTRA_DRAG_NAME = "intent_extra_frag_name";
 
@@ -48,6 +53,23 @@ public class DragProductCardActivity extends BaseActivity
         this.initializeActivity();
         this.initializeInjector();
         this.initView();
+        this.initPresenter(this.dragTitle);
+    }
+
+    public void initPresenter(String dragTitle){
+        if(dragProductCardPresenter!=null){
+            this.dragProductCardPresenter.initialize(dragTitle);
+        }
+    }
+
+    public void showLoading(){
+        this.productCardBinding.rlProgress.setVisibility(View.VISIBLE);
+        this.setProgressBarIndeterminateVisibility(true);
+    }
+
+    public void hideLoading(){
+        this.productCardBinding.rlProgress.setVisibility(View.GONE);
+        this.setProgressBarIndeterminateVisibility(false);
     }
 
     @Override
@@ -66,6 +88,14 @@ public class DragProductCardActivity extends BaseActivity
                 .applicationComponent(getApplicationComponent())
                 .activityModule(getActivityModule())
                 .build();
+    }
+
+    public Context getContext(){
+        return this.getApplicationContext();
+    }
+
+    public void showError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
 

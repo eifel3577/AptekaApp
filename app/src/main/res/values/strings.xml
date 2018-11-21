@@ -10,4 +10,7 @@
     <string name="exception_message_user_not_found">Не удалось получить данные.Проверьте интернет соединение</string>
     <string name="specify_search">Уточнить поиск</string>
     <string name="drag_not_found">Данное лекарство не найдено.Попробуйте снова,уточнив поиск</string>
+    <string name="bye">Купить</string>
+    <string name="bye_one_click">Купить в 1 клик</string>
+
 </resources>

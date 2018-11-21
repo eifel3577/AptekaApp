@@ -17,48 +17,68 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <com.astuetz.PagerSlidingTabStrip
-        android:id="@+id/tabs"
+    <RelativeLayout
+        android:id="@+id/rl_progress"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        android:textColor="@color/white"
-        android:elevation="4dp"
-        app:pstsIndicatorColor="@color/tab_strip"
-        app:pstsIndicatorHeight="@dimen/tab_indicator_height"
-        app:pstsShouldExpand="true"/>
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
-        android:layout_width="match_parent"
-        android:layout_height="0px"
-        android:layout_weight="1"
-        android:background="@android:color/white" />
+        <ProgressBar
+            style="@style/AppTheme.ProgressBar"
+            android:layout_centerInParent="true" />
 
-    <FrameLayout
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    </RelativeLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/tabs_layout"
+        android:visibility="gone"
         android:layout_height="wrap_content">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_marginLeft="80dp"
-            android:text="Купить"
-            android:layout_height="wrap_content" />
+        <com.astuetz.PagerSlidingTabStrip
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"
+            android:elevation="4dp"
+            app:pstsIndicatorColor="@color/tab_strip"
+            app:pstsIndicatorHeight="@dimen/tab_indicator_height"
+            app:pstsShouldExpand="true"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:text="Купить в 1 клик"
-            android:layout_height="wrap_content" />
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:background="@android:color/white" />
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:id="@+id/one_cleck_bye_layout"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="80dp"
+                android:text="@string/bye"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:text="@string/bye_one_click"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
 
     </LinearLayout>
-
-
 
 </LinearLayout>
 

@@ -5,7 +5,7 @@ import android.content.Context;
 /**
  * Интерфей представляющий View ,использующие загруженный данные
  */
-public interface LoadDataView {
+public interface LoadDataView extends ApplicationView {
     /**
      * показывает View с прогрессбаром индикатором загрузки
      */

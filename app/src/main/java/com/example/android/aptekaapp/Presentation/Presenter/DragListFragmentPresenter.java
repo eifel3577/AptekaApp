@@ -182,8 +182,7 @@ public class DragListFragmentPresenter implements Presenter {
                 showSpecifyScreen();
             }
             else
-            Log.d("1112","из кеша пришло "+drag.size()+" элементов");
-            DragListFragmentPresenter.this.showDragsCollectionInView(drag);
+                DragListFragmentPresenter.this.showDragsCollectionInView(drag);
         }
     }
 }
