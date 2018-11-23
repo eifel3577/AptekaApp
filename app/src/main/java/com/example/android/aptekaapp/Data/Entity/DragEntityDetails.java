@@ -16,6 +16,7 @@ public class DragEntityDetails {
     private HashMap<String,String>properties;
     private String generalInformation;
     private String instruction;
+    private String groupName;
 
     public String getGeneralInformation() {
         return generalInformation;
@@ -40,4 +41,8 @@ public class DragEntityDetails {
     public void setProperties(HashMap<String, String> properties) {
         this.properties = properties;
     }
+
+    public String getGroupName() {return groupName;}
+
+    public void setGroupName(String groupName) {this.groupName = groupName;}
 }

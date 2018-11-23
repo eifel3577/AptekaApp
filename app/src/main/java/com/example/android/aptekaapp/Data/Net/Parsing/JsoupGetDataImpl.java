@@ -8,6 +8,7 @@ import android.util.Log;
 
 
 import com.example.android.aptekaapp.Data.Entity.DragEntity;
+import com.example.android.aptekaapp.Data.Entity.DragEntityDetails;
 import com.example.android.aptekaapp.Data.Exception.NetworkConnectionException;
 
 import java.net.MalformedURLException;
@@ -63,9 +64,36 @@ public class JsoupGetDataImpl implements JsoupGetData {
 
 
     private List<DragEntity> getDragEntitiesFromJsoup(String search) throws MalformedURLException {
-        return JsoupConnection.createGET(search).connectToJsoup();
+        return JsoupConnection.createGET(search,"base_search").connectToJsoup();
     }
 
+    private List<DragEntityDetails> getDragEntityDetailsFromJsoup(String searchDetails) throws MalformedURLException{
+        return JsoupConnection.createGET(searchDetails,"details_search").connectToJsoup();
+    }
+
+    @Override
+    public Observable<List<DragEntityDetails>> dragEntityDetailsList(final String searchDetails)  {
+        return Observable.create(new ObservableOnSubscribe<List<DragEntityDetails>>() {
+            @Override
+            public void subscribe(@NonNull ObservableEmitter<List<DragEntityDetails>> em) throws Exception {
+                if (isThereInternetConnection()) {
+                    try {
+                        List<DragEntityDetails>dragEntityList = getDragEntitiesFromJsoup(searchDetails);
+                        if (dragEntityList != null) {
+                            em.onNext(dragEntityList);
+                            em.onComplete();
+                        } else {
+                            em.onError(new NetworkConnectionException());
+                        }
+                    } catch (Exception e) {
+                        em.onError(new NetworkConnectionException(e.getCause()));
+                    }
+                } else {
+                    em.onError(new NetworkConnectionException());
+                }
+            }
+        });
+    }
 
     /**
      * Проверка подключения к интернету

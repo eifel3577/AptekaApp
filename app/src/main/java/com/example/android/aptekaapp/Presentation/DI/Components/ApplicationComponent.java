@@ -4,6 +4,7 @@ import android.content.Context;
 
 
 import com.example.android.aptekaapp.Data.Cashe.db.Database.DatabaseCashe;
+import com.example.android.aptekaapp.Data.Cashe.db.Database.DatabaseDetailsCashe;
 import com.example.android.aptekaapp.Domain.Repository.DragRepository;
 import com.example.android.aptekaapp.Presentation.DI.Modules.ApplicationModule;
 import com.example.android.aptekaapp.Presentation.View.Activity.BaseActivity;
@@ -20,6 +21,7 @@ import dagger.Component;
 public interface ApplicationComponent {
     void inject(BaseActivity baseActivity);
     void inject(DatabaseCashe databaseCashe);
+    void inject(DatabaseDetailsCashe databaseDetailsCashe);
     //Exposed to sub-graphs.
     Context context();
     DragRepository dragRepository();

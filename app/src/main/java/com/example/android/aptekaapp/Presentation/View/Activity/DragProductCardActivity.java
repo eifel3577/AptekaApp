@@ -37,7 +37,7 @@ public class DragProductCardActivity extends BaseActivity
     DragProductCardPresenter dragProductCardPresenter;
 
     private UserComponent userComponent;
-    private String dragTitle;
+    private String dragUrl;
     private PagerSlidingTabStrip tabs;
     private ViewPager pager;
     private ActivityProductCardBinding productCardBinding;
@@ -51,16 +51,16 @@ public class DragProductCardActivity extends BaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.dragTitle = getIntent().getStringExtra(INTENT_EXTRA_DRAG_NAME);
+        this.dragUrl = getIntent().getStringExtra(INTENT_EXTRA_DRAG_NAME);
         this.initializeActivity();
         this.initializeInjector();
         this.initView();
-        this.initPresenter(this.dragTitle);
+        this.initPresenter(this.dragUrl);
     }
 
-    public void initPresenter(String dragTitle){
+    public void initPresenter(String dragUrl){
         if(dragProductCardPresenter!=null){
-            this.dragProductCardPresenter.initialize(dragTitle);
+            this.dragProductCardPresenter.initialize(dragUrl);
         }
     }
 

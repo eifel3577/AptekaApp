@@ -4,6 +4,7 @@ package com.example.android.aptekaapp.Data.Repository.DataSource;
 
 import com.example.android.aptekaapp.Data.Cashe.DragCashe;
 import com.example.android.aptekaapp.Data.Entity.DragEntity;
+import com.example.android.aptekaapp.Data.Entity.DragEntityDetails;
 
 import java.util.List;
 
@@ -31,5 +32,10 @@ public class DatabaseDragDataStore implements DragDataStore {
     @Override
     public Observable<List<DragEntity>> dragEntityList(String dragTitle) {
         return this.dragCache.get(dragTitle);
+    }
+
+    @Override
+    public Observable<List<DragEntityDetails>> dragEntityDetailsList(String dragTitle) {
+        return null;
     }
 }

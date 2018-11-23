@@ -5,7 +5,9 @@ import android.util.Log;
 
 
 import com.example.android.aptekaapp.Data.Entity.DragEntity;
+import com.example.android.aptekaapp.Data.Entity.DragEntityDetails;
 import com.example.android.aptekaapp.Data.Entity.Mapper.DragEntityDataMapper;
+import com.example.android.aptekaapp.Data.Entity.Mapper.DragEntityDetailsMapper;
 import com.example.android.aptekaapp.Data.Repository.DataSource.DragDataStore;
 import com.example.android.aptekaapp.Data.Repository.DataSource.DragDataStoreFactory;
 import com.example.android.aptekaapp.Domain.Drag;
@@ -31,6 +33,7 @@ public class DragDataRepository implements DragRepository {
 
     private final DragDataStoreFactory dragDataStoreFactory;
     private final DragEntityDataMapper dragEntityDataMapper;
+    private final DragEntityDetailsMapper dragEntityDetailsMapper;
 
     /**
      * Конструирует {@link DragRepository}.
@@ -40,9 +43,11 @@ public class DragDataRepository implements DragRepository {
      */
     @Inject
     DragDataRepository(DragDataStoreFactory dataStoreFactory,
-                       DragEntityDataMapper dragEntityDataMapper) {
+                       DragEntityDataMapper dragEntityDataMapper,
+                       DragEntityDetailsMapper dragEntityDetailsMapper) {
         this.dragDataStoreFactory = dataStoreFactory;
         this.dragEntityDataMapper = dragEntityDataMapper;
+        this.dragEntityDetailsMapper = dragEntityDetailsMapper;
     }
 
     /**создает DragDataStore (источник данных) через фабрику,полученные из источника данные
@@ -61,6 +66,13 @@ public class DragDataRepository implements DragRepository {
 
     @Override
     public Observable<List<DragDetails>> dragDetails(String dragSearch) {
-        return null;
+        final DragDataStore dragDataStore = this.dragDataStoreFactory.create(dragSearch);
+        return dragDataStore.dragEntityDetailsList(dragSearch).map(new Function<List<DragEntityDetails>, List<DragDetails>>() {
+            @Override
+            public List<DragDetails> apply(@NonNull List<DragEntityDetails> dragEntityDetailses) throws Exception {
+                return dragEntityDetailsMapper.transformListDragEntityDetailsToListDragDetails(dragEntityDetailses);
+            }
+        });
+
     }
 }

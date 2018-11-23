@@ -7,6 +7,7 @@ public class Drag {
     private String dragName;
     private String dragPrice;
     private String dragPhoto;
+    private String dragUrl;
 
     public String getDragName() {
         return dragName;
@@ -31,4 +32,8 @@ public class Drag {
     public void setDragPhoto(String dragPhoto) {
         this.dragPhoto = dragPhoto;
     }
+
+    public String getDragUrl() {return dragUrl;}
+
+    public void setDragUrl(String dragUrl) {this.dragUrl = dragUrl;}
 }

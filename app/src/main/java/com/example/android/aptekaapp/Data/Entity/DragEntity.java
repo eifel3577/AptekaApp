@@ -18,6 +18,9 @@ public class DragEntity {
 
     private String groupName;
 
+    @SerializedName("drag_url")
+    private String dragUrl;
+
     @SerializedName("drag_name")
     private String dragName;
 
@@ -54,4 +57,8 @@ public class DragEntity {
     public String getDragPhoto() {return dragPhoto;}
 
     public void setDragPhoto(String dragPhoto) {this.dragPhoto = dragPhoto;}
+
+    public String getDragUrl() {return dragUrl;}
+
+    public void setDragUrl(String dragUrl) {this.dragUrl = dragUrl;}
 }

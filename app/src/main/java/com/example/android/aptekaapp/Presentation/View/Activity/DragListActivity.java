@@ -56,7 +56,6 @@ public class DragListActivity extends BaseActivity
     private void initializeActivity(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
             this.searchString = getIntent().getStringExtra(INTENT_EXTRA_PARAM_SEARCH_STRING);
-            Log.d("2810","DragListActivity initializeActivity, searchString = "+searchString);
             addFragment(R.id.fragmentContainer, DragListFragment.getOfDragTitle(searchString));
         } else {
             this.searchString = savedInstanceState.getString(INSTANCE_STATE_SEARCH_STRING);
@@ -86,6 +85,6 @@ public class DragListActivity extends BaseActivity
     /**обработка нажатия на конкретном лекарстве в списке */
     @Override
     public void onDragClicked(DragModel dragModel) {
-        this.navigator.navigateToDragDetails(this,dragModel.getDragName());
+        this.navigator.navigateToDragDetails(this,dragModel.getDragUrl());
     }
 }

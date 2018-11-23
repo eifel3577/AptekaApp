@@ -8,19 +8,19 @@ import java.util.List;
 
 import io.reactivex.Observable;
 
-public interface DragCashe {
+public interface DragCashe<T> {
 
     /**
      * Получает  {@link Observable} который будет транслировать {@link DragEntity}.
      *
      */
-    Observable<List<DragEntity>> get(String groupName);
+    Observable<List<T>> get(String groupName);
 
     /**
      * Кладет список элементов в кэш
      * @param list Список элементов для помещения в кэш
      */
-    void put(List<DragEntity> list);
+    void put(List<T> list);
 
     /**
      * Проверяет находится ли элемент (Drag) в данном кэше

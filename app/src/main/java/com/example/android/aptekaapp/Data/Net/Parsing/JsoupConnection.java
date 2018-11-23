@@ -18,21 +18,31 @@ import java.util.concurrent.Callable;
 
 public class JsoupConnection  implements Callable<List<DragEntity>> {
 
-    String JSOUP_BASE_URL =
+    private final String JSOUP_BASE_URL =
                 "https://www.apteka24.ua/category/";
+    private final String JSOUP_DETAILS_URL = "https://www.apteka24.ua";
 
     private String url;
     private String request;
+    private String identSearch;
 
-    private JsoupConnection(String request) throws MalformedURLException {
-        Log.d("2810","JsoupConnection request is "+convertationSearhString(request));
+    private JsoupConnection(String request,String identSearch) throws MalformedURLException {
         this.request =  request;
-        this.url = JSOUP_BASE_URL+convertationSearhString(request)+"/";
+        this.identSearch = identSearch;
+        if(identSearch.equals("base_search")) {
+            this.url = JSOUP_BASE_URL + convertationSearhString(request) + "/";
+        }
+        else if(identSearch.equals("details_search")){
+            //TODO realize
+            this.url = JSOUP_DETAILS_URL ;
+        }
     }
 
-    static JsoupConnection createGET(String url) throws MalformedURLException {
-        return new JsoupConnection(url);
+    static JsoupConnection createGET(String url,String identSearch) throws MalformedURLException {
+        return new JsoupConnection(url,identSearch);
     }
+
+
 
     @Override
     public List<DragEntity> call() throws Exception {
@@ -65,10 +75,12 @@ public class JsoupConnection  implements Callable<List<DragEntity>> {
             Elements names = titleAndPriceElements.get(i).getElementsByClass("goodsname");
             Elements coasts = titleAndPriceElements.get(i).getElementsByClass("goodscoast");
             for(int k=0;k<names.size();k++){
+                Element link = names.get(k).select("a").first();
                 DragEntity dragEntity = new DragEntity();
                 dragEntity.setDragPhoto(photos.get(i).absUrl("src"));
                 dragEntity.setDragName(names.get(k).text());
                 dragEntity.setGroupName(request);
+                dragEntity.setDragUrl(link.attr("href"));
                 if (coasts.get(k).text().length() == 0) {
                     continue;
                 } else {

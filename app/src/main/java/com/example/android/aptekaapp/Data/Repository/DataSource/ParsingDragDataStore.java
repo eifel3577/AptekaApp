@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.example.android.aptekaapp.Data.Cashe.DragCashe;
 import com.example.android.aptekaapp.Data.Entity.DragEntity;
+import com.example.android.aptekaapp.Data.Entity.DragEntityDetails;
 import com.example.android.aptekaapp.Data.Net.Parsing.JsoupGetData;
 
 import java.util.List;
@@ -37,6 +38,16 @@ public class ParsingDragDataStore implements DragDataStore {
             @Override
             public void accept(@NonNull List<DragEntity> dragEntityList) throws Exception {
                 ParsingDragDataStore.this.dragCache.put(dragEntityList);
+            }
+        });
+    }
+
+    @Override
+    public Observable<List<DragEntityDetails>> dragEntityDetailsList(String dragTitle) {
+        return this.jsoupGetData.dragEntityDetailsList(dragTitle).doOnNext(new Consumer<List<DragEntityDetails>>() {
+            @Override
+            public void accept(@NonNull List<DragEntityDetails> dragEntityDetailses) throws Exception {
+                ParsingDragDataStore.this.dragCache.put(dragEntityDetailses);
             }
         });
     }

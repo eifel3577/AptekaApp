@@ -8,6 +8,7 @@ import android.util.Log;
 import com.example.android.aptekaapp.Data.Cashe.DragCashe;
 import com.example.android.aptekaapp.Data.Net.Parsing.JsoupGetData;
 import com.example.android.aptekaapp.Data.Net.Parsing.JsoupGetDataImpl;
+import com.example.android.aptekaapp.Data.Repository.DragDataRepository;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -35,16 +36,16 @@ public class DragDataStoreFactory {
      * @param dragTitle название лекарства
      */
     public DragDataStore create(String dragTitle) {
-        DragDataStore dragDataStore;
+        DragDataStore dragDataStore = null;
 
-        if(!this.dragCache.isExpired()&&this.dragCache.isCached(dragTitle)){
+            if (!this.dragCache.isExpired() && this.dragCache.isCached(dragTitle)) {
                 dragDataStore = new DatabaseDragDataStore(this.dragCache);
             }
             else {
                 dragDataStore = createParsingDataStore();
             }
 
-            return dragDataStore;
+        return dragDataStore;
     }
 
     /**

@@ -20,11 +20,16 @@ import javax.inject.Inject;
 /**презентер для получения детальной информации о лекарстве.Полученное инфо кладется в базу */
 public class DragProductCardPresenter implements Presenter {
 
+    /**флаг для прогрессбара */
     private boolean showDownloadProgressBar = false;
+    /**юзкейс */
     private GetDragDetails dragDetails;
+    /**обьект вью */
     private DragProductCardActivity view;
+    /**маппер для конвертации DragDetails в DragModelDetails */
     private DragModelDetailsDataMapper detailsDataMapper;
 
+    /**презентер будет предоставляться как зависимость */
     @Inject
     public DragProductCardPresenter(GetDragDetails dragDetails,
                                     DragModelDetailsDataMapper detailsDataMapper) {
@@ -32,15 +37,18 @@ public class DragProductCardPresenter implements Presenter {
         this.detailsDataMapper = detailsDataMapper;
     }
 
+
     public void setView(@NonNull ApplicationView view){
         this.view = (DragProductCardActivity)view;
     }
 
+    /**показывает прогрессбар,запускает загрузку детальной информации */
     public void initialize(String dragTitle) {
         this.showViewLoading();
         this.getDetails(dragTitle);
     }
 
+    /**отдает команду юзкейсу начинать загрузку */
     private void getDetails(String dragTitle){
         this.dragDetails.execute(new DragDetailsObserver(),GetDragDetails.Params.setDragSearch(dragTitle));
     }
@@ -52,6 +60,7 @@ public class DragProductCardPresenter implements Presenter {
         this.view.showLoading();
     }
 
+    /**дает View команду скрывать View с прогрессбаром индикатором загрузки */
     private void hideViewLoading(){
         showDownloadProgressBar = false;
         this.view.hideLoading();
@@ -66,12 +75,14 @@ public class DragProductCardPresenter implements Presenter {
         this.view.showError(errorMessage);
     }
 
+    /**отписка от трансляций,обнуляет ссылку на вью */
     @Override
     public void destroy() {
         this.dragDetails.dispose();
         this.view = null;
     }
 
+    /**сохранение кручения прогрессбара при повороте экрана */
     @Override
     public void resume() {
         if(showDownloadProgressBar){
@@ -82,6 +93,7 @@ public class DragProductCardPresenter implements Presenter {
     @Override
     public void pause() {}
 
+    /**наблюдатель */
     private final class DragDetailsObserver extends DefaultObserver<List<DragDetails>> {
         @Override
         public void onComplete() {

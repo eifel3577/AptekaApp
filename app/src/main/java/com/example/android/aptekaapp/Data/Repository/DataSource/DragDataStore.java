@@ -3,6 +3,7 @@ package com.example.android.aptekaapp.Data.Repository.DataSource;
 
 
 import com.example.android.aptekaapp.Data.Entity.DragEntity;
+import com.example.android.aptekaapp.Data.Entity.DragEntityDetails;
 
 import java.util.List;
 
@@ -20,4 +21,6 @@ public interface DragDataStore {
      * @param  dragTitle ,название препарата по которому будет получаться {@link DragEntity}
      */
     Observable<List<DragEntity>> dragEntityList(final String dragTitle);
+
+    Observable<List<DragEntityDetails>> dragEntityDetailsList(final String dragTitle);
 }
