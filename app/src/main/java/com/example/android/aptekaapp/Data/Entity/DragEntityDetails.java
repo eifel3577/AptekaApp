@@ -13,7 +13,7 @@ public class DragEntityDetails {
     public long primaryKey;
 
 
-    private HashMap<String,String>properties;
+    //private HashMap<String,String>properties;
     private String generalInformation;
     private String instruction;
     private String groupName;
@@ -34,13 +34,13 @@ public class DragEntityDetails {
         this.instruction = instruction;
     }
 
-    public HashMap<String, String> getProperties() {
-        return properties;
-    }
+    //public HashMap<String, String> getProperties() {
+    //return properties;
+    //}
 
-    public void setProperties(HashMap<String, String> properties) {
-        this.properties = properties;
-    }
+    //public void setProperties(HashMap<String, String> properties) {
+    //    this.properties = properties;
+    //}
 
     public String getGroupName() {return groupName;}
 

@@ -5,11 +5,10 @@ import android.content.Intent;
 
 
 import com.example.android.aptekaapp.Presentation.View.Activity.DragListActivity;
-import com.example.android.aptekaapp.Presentation.View.Activity.DragProductCardActivity;
+import com.example.android.aptekaapp.Presentation.View.Activity.NewDragProductCardActivity;
 import com.example.android.aptekaapp.Presentation.View.Activity.SearchActivity;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 import static android.support.v4.content.IntentCompat.FLAG_ACTIVITY_CLEAR_TASK;
@@ -18,14 +17,13 @@ import static android.support.v4.content.IntentCompat.FLAG_ACTIVITY_CLEAR_TASK;
  *
  * Класс обеспечивающий навигацию в приложении
  */
-@Singleton
+//TODO восстановить аннотацию синглтон
+//@Singleton
 public class Navigator {
 
     /**класс будет передаваться как зависимость в другие классы */
     @Inject
-    public Navigator() {
-        //empty
-    }
+    public Navigator() {}
 
     /**
      * направляет пользователя на показ страницы поиска лекарств
@@ -65,10 +63,10 @@ public class Navigator {
      *
      * @param context контекст нужный для открытия соответствующего активити
      */
-    public void navigateToDragDetails(Context context, String dragName) {
+    public void navigateToDragDetails(Context context, String dragUrl) {
         if (context != null) {
-            Intent intentToLaunch = DragProductCardActivity.getCallingIntent(context, dragName);
-            context.startActivity(intentToLaunch);
+            Intent intent = NewDragProductCardActivity.getCallingIntent(context,dragUrl);
+            context.startActivity(intent);
         }
     }
 }

@@ -8,16 +8,19 @@ import com.example.android.aptekaapp.Domain.Extension.DefaultErrorBundle;
 import com.example.android.aptekaapp.Domain.Extension.ErrorBundle;
 import com.example.android.aptekaapp.Domain.Interactor.DefaultObserver;
 import com.example.android.aptekaapp.Domain.Interactor.GetDragDetails;
+import com.example.android.aptekaapp.Presentation.DI.PerActivity;
 import com.example.android.aptekaapp.Presentation.Extension.ErrorMessageFactory;
 import com.example.android.aptekaapp.Presentation.Mapper.DragModelDetailsDataMapper;
-import com.example.android.aptekaapp.Presentation.View.Activity.DragProductCardActivity;
 import com.example.android.aptekaapp.Presentation.View.ApplicationView;
+import com.example.android.aptekaapp.Presentation.View.DragView;
+import com.example.android.aptekaapp.Presentation.View.Fragment.DragDetailFragment;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
 /**презентер для получения детальной информации о лекарстве.Полученное инфо кладется в базу */
+@PerActivity
 public class DragProductCardPresenter implements Presenter {
 
     /**флаг для прогрессбара */
@@ -25,7 +28,7 @@ public class DragProductCardPresenter implements Presenter {
     /**юзкейс */
     private GetDragDetails dragDetails;
     /**обьект вью */
-    private DragProductCardActivity view;
+    private DragDetailFragment view;
     /**маппер для конвертации DragDetails в DragModelDetails */
     private DragModelDetailsDataMapper detailsDataMapper;
 
@@ -38,8 +41,8 @@ public class DragProductCardPresenter implements Presenter {
     }
 
 
-    public void setView(@NonNull ApplicationView view){
-        this.view = (DragProductCardActivity)view;
+    public void setView(@NonNull DragView view){
+        this.view = (DragDetailFragment) view;
     }
 
     /**показывает прогрессбар,запускает загрузку детальной информации */

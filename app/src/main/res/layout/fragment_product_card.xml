@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="ActivityProductCard"
-            type="com.example.android.aptekaapp.Presentation.View.Activity.DragProductCardActivity"/>
+            name="FragmentProductCard"
+            type="com.example.android.aptekaapp.Presentation.View.Fragment.DragDetailFragment"/>
 
     </data>
 

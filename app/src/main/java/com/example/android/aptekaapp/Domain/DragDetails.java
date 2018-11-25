@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class DragDetails {
 
-    private HashMap<String,String> properties;
+    //private HashMap<String,String> properties;
     private String generalInformation;
     private String instruction;
 
@@ -25,11 +25,11 @@ public class DragDetails {
         this.instruction = instruction;
     }
 
-    public HashMap<String, String> getProperties() {
-        return properties;
-    }
+    //public HashMap<String, String> getProperties() {
+    //    return properties;
+    //}
 
-    public void setProperties(HashMap<String, String> properties) {
-        this.properties = properties;
-    }
+    //public void setProperties(HashMap<String, String> properties) {
+    //    this.properties = properties;
+    //}
 }

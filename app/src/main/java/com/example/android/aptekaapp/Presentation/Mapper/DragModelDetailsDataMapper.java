@@ -23,7 +23,7 @@ public class DragModelDetailsDataMapper {
         if(dragDetails!=null){
             dragModelDetails.setGeneralInformation(dragDetails.getGeneralInformation());
             dragModelDetails.setInstruction(dragDetails.getInstruction());
-            dragModelDetails.setProperties(dragDetails.getProperties());
+            //dragModelDetails.setProperties(dragDetails.getProperties());
         }
         return dragModelDetails;
     }

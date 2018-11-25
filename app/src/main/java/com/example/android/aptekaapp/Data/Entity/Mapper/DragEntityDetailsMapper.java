@@ -24,7 +24,7 @@ public class DragEntityDetailsMapper {
             dragDetails = new DragDetails();
             dragDetails.setGeneralInformation(dragEntityDetails.getGeneralInformation());
             dragDetails.setInstruction(dragEntityDetails.getInstruction());
-            dragDetails.setProperties(dragEntityDetails.getProperties());
+            //dragDetails.setProperties(dragEntityDetails.getProperties());
         }
         return dragDetails;
     }

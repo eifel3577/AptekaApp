@@ -43,7 +43,8 @@ public class DragListActivity extends BaseActivity
     }
 
     /**сохранение состояния при повороте экрана.Сохраняет строку поиска */
-    @Override protected void onSaveInstanceState(Bundle outState) {
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
         if (outState != null) {
             outState.putString(INSTANCE_STATE_SEARCH_STRING, this.searchString);
         }

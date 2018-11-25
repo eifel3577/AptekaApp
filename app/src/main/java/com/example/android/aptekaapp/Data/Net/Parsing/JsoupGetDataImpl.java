@@ -68,7 +68,8 @@ public class JsoupGetDataImpl implements JsoupGetData {
     }
 
     private List<DragEntityDetails> getDragEntityDetailsFromJsoup(String searchDetails) throws MalformedURLException{
-        return JsoupConnection.createGET(searchDetails,"details_search").connectToJsoup();
+        //return JsoupConnection.createGET(searchDetails,"details_search").connectToJsoup();
+        return null;
     }
 
     @Override
@@ -78,7 +79,7 @@ public class JsoupGetDataImpl implements JsoupGetData {
             public void subscribe(@NonNull ObservableEmitter<List<DragEntityDetails>> em) throws Exception {
                 if (isThereInternetConnection()) {
                     try {
-                        List<DragEntityDetails>dragEntityList = getDragEntitiesFromJsoup(searchDetails);
+                        List<DragEntityDetails>dragEntityList = getDragEntityDetailsFromJsoup(searchDetails);
                         if (dragEntityList != null) {
                             em.onNext(dragEntityList);
                             em.onComplete();

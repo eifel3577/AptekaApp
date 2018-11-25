@@ -5,16 +5,8 @@ import android.content.Context;
 /**
  * Интерфей представляющий View ,использующие загруженный данные
  */
-public interface LoadDataView extends ApplicationView {
-    /**
-     * показывает View с прогрессбаром индикатором загрузки
-     */
-    void showLoading();
+public interface LoadDataView extends DragView {
 
-    /**
-     * скрывает View с прогрессбаром индикатором загрузки
-     */
-    void hideLoading();
 
     /**
      * Show a retry view in case of an error when retrieving data.
@@ -33,15 +25,5 @@ public interface LoadDataView extends ApplicationView {
     /**скрывает View с экраном Уточнить поиск  */
     void hideSpecifyScreen();
 
-    /**
-     * Показывает сообщение о ошибке
-     *
-     * @param message строка которая будет отображаться в сообщении
-     */
-    void showError(String message);
 
-    /**
-     * Получение  {@link android.content.Context}.
-     */
-    Context context();
 }
