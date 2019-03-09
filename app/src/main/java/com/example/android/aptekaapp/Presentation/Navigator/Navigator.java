@@ -20,9 +20,7 @@ public class Navigator {
 
     /**класс будет передаваться как зависимость в другие классы */
     @Inject
-    public Navigator() {
-        //empty
-    }
+    public Navigator() { }
 
     /**
      * направляет пользователя на показ страницы поиска лекарств
@@ -46,6 +44,7 @@ public class Navigator {
     public void navigateToDragList(Context context,String searchText) {
 
         if (context != null) {
+            //создается интент на DragSearchactivity,ему передается строка поиска для инициализации
             Intent intentToLaunch =  DragSearchActivity.getCallingIntent(context,searchText);
             context.startActivity(intentToLaunch);
         }
@@ -58,7 +57,6 @@ public class Navigator {
 
     /**
      * направляет пользователя на показ детельной инфо о лекарстве
-     *
      * @param context контекст нужный для открытия соответствующего активити
      */
     public void navigateToDragDetails(Context context, int userId) {

@@ -4,6 +4,7 @@
 
     <data>
 
+        <!--биндинг работает с обьектом DragListFragment -->
         <variable
             name="dragListFragment"
             type="com.example.android.aptekaapp.Presentation.View.Fragment.DragListFragment" />
@@ -46,6 +47,7 @@
             android:layout_height="match_parent"
             android:visibility="gone">
 
+            <!--по нажатию кнопки Повторить вызывается метод обьекта DragListFragment onButtonRetryClick -->
             <Button
                 android:id="@+id/bt_retry"
                 android:tag="binding_1"

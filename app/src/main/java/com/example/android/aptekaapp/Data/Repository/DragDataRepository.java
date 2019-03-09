@@ -22,7 +22,7 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Function;
 
 /**
- * {@link DragDataRepository} имплементит оепозиторий слоя Domain,таким образом связывая
+ * {@link DragDataRepository} имплементит репозиторий слоя Domain,таким образом связывая
  * слой Data и слой Domain
  */
 @Singleton

@@ -27,8 +27,10 @@ import javax.inject.Inject;
  */
 @PerActivity
 public class DragListFragmentPresenter implements Presenter {
+
     /**флаг крутится ли прогрессбар загрузки,по умолчанию нет */
     private boolean showDownloadProgressBar = false;
+
     /**флаг отображается ли кнопка Повторить,по умолчанию не отображается */
     private boolean showRetryButton = false;
 
@@ -37,6 +39,7 @@ public class DragListFragmentPresenter implements Presenter {
 
     /**обьект GetUserList.Он находится в другом слое,в Domain */
     private final GetDragList getDragListUseCase;
+
     /**обьект GetUserList.Он находится в другом слое,в Domain */
     private final DragModelDataMapper dragModelDataMapper;
 

@@ -8,7 +8,7 @@ import com.example.android.aptekaapp.Presentation.DI.PerActivity;
 import dagger.Module;
 import dagger.Provides;
 
-/**
+/**Модули - это просто классы, куда мы помещаем код создания объектов
  * модуль,возвращающий зависимость "активити"
  *
  */

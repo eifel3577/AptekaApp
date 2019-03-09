@@ -29,7 +29,6 @@ public class DragSearchActivity extends BaseActivity
      * @param context контекст ,необходим для передачи интента
      * @param searchString строка поиска,введеная пользователем в SearchActivity */
     public static Intent getCallingIntent(Context context, String searchString) {
-        Log.d("2810","DragSearchActivity getCallingIntent");
         Intent callingIntent = new Intent(context, DragSearchActivity.class);
         callingIntent.putExtra(INTENT_EXTRA_PARAM_SEARCH_STRING, searchString);
         return callingIntent;
@@ -38,7 +37,6 @@ public class DragSearchActivity extends BaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("2810","DragSearchActivity onCreate");
         setContentView(R.layout.drag_search_activity);
         this.initializeActivity(savedInstanceState);
         this.initializeInjector();
@@ -58,7 +56,6 @@ public class DragSearchActivity extends BaseActivity
     private void initializeActivity(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
             this.searchString = getIntent().getStringExtra(INTENT_EXTRA_PARAM_SEARCH_STRING);
-            Log.d("2810","DragSearchActivity initializeActivity, searchString = "+searchString);
             addFragment(R.id.fragmentContainer, DragListFragment.getOfDragTitle(searchString));
         } else {
             this.searchString = savedInstanceState.getString(INSTANCE_STATE_SEARCH_STRING);

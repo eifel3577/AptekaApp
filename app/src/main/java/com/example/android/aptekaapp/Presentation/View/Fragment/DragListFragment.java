@@ -29,18 +29,22 @@ public class DragListFragment extends BaseFragment implements DragListView {
 
     private static final String PARAM_DRAG_TITLE = "param_drag_title";
 
+    /**биндинг для фрагмента */
     TestDragListFragmentBinding binding;
 
+    /**получение презентера через даггер */
     @Inject
     DragListFragmentPresenter presenter;
 
+    /**получение адаптера через даггер */
     @Inject
     DragListAdapter dragsAdapter;
 
-    /**обьект интерфейса,общего с активити хостом.Через этот интерфейс в активити хост будет идити команда,когда пользователь
+    /**обьект интерфейса,общего с активити хостом.Через этот интерфейс в активити хост будет идти команда,когда пользователь
      * нажмет на конкретном лекарстве в списке */
     private DragListListener dragListListener;
-    /**обьект интерфейса,общего с активити хостом.Через этот интерфейс в активити хост будет идити команда,когда пользователь
+
+    /**обьект интерфейса,общего с активити хостом.Через этот интерфейс в активити хост будет идти команда,когда пользователь
      * нажмет на кнопку Повторить */
     private RetryButtonClickListener retryButtonClickListener;
 
@@ -82,6 +86,7 @@ public class DragListFragment extends BaseFragment implements DragListView {
         setRetainInstance(true);
     }
 
+    /** инициализация даггера */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -184,7 +189,6 @@ public class DragListFragment extends BaseFragment implements DragListView {
     private void loadDragListByTitle(String dragTitle) {
 
         if(this.presenter!=null) {
-            Log.d("2810","DragListFragment loadDragListByTitle");
             this.presenter.initialize(dragTitle);
         }
     }
