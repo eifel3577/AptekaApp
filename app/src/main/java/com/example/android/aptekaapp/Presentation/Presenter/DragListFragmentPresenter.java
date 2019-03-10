@@ -56,7 +56,8 @@ public class DragListFragmentPresenter implements Presenter {
         this.viewListView = view;
     }
 
-    @Override public void resume() {
+    @Override
+    public void resume() {
         if(showDownloadProgressBar){
             this.viewListView.showLoading();
         }
@@ -65,9 +66,8 @@ public class DragListFragmentPresenter implements Presenter {
         }
     }
 
-    @Override public void pause() {
-
-    }
+    @Override
+    public void pause() { }
 
     /**отписывается от Disposable , обнуляет ссылку на прикрепленное вью {@link TestDragListFragment} */
     @Override public void destroy() {

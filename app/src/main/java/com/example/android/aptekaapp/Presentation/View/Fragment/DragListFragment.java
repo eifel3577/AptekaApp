@@ -28,24 +28,23 @@ import javax.inject.Inject;
 public class DragListFragment extends BaseFragment implements DragListView {
 
     private static final String PARAM_DRAG_TITLE = "param_drag_title";
-
-    /**биндинг для фрагмента */
+    //биндинг для фрагмента
     TestDragListFragmentBinding binding;
 
-    /**получение презентера через даггер */
+    //получение презентера через даггер
     @Inject
     DragListFragmentPresenter presenter;
 
-    /**получение адаптера через даггер */
+    //получение адаптера через даггер
     @Inject
     DragListAdapter dragsAdapter;
 
-    /**обьект интерфейса,общего с активити хостом.Через этот интерфейс в активити хост будет идти команда,когда пользователь
-     * нажмет на конкретном лекарстве в списке */
+    //обьект интерфейса,общего с активити хостом.Через этот интерфейс в активити хост будет идти
+    // команда,когда пользователь нажмет на конкретном лекарстве в списке
     private DragListListener dragListListener;
 
-    /**обьект интерфейса,общего с активити хостом.Через этот интерфейс в активити хост будет идти команда,когда пользователь
-     * нажмет на кнопку Повторить */
+    //обьект интерфейса,общего с активити хостом.Через этот интерфейс в активити хост будет идти команда,когда пользователь
+    //нажмет на кнопку Повторить
     private RetryButtonClickListener retryButtonClickListener;
 
     /**
@@ -86,7 +85,7 @@ public class DragListFragment extends BaseFragment implements DragListView {
         setRetainInstance(true);
     }
 
-    /** инициализация даггера */
+    /**получает обьект даггера из своей активити хоста */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,7 +115,6 @@ public class DragListFragment extends BaseFragment implements DragListView {
      * вызывается loadDragListByTitle(currentDragTitle()*/
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-
         super.onViewCreated(view, savedInstanceState);
         this.presenter.setView(this);
         if (savedInstanceState == null) {
@@ -126,7 +124,6 @@ public class DragListFragment extends BaseFragment implements DragListView {
 
     /**настройка RecyclerView */
     private void setupRecyclerView() {
-
         dragsAdapter.setOnItemClickListener(onItemClickListener);
         binding.rvUsers.setLayoutManager(new DragsLayoutManager(context()));
         binding.rvUsers.setAdapter(dragsAdapter);
@@ -166,7 +163,6 @@ public class DragListFragment extends BaseFragment implements DragListView {
      * @param  dragModelCollection коллекция обьектов DragModel*/
     @Override
     public void renderDragList(Collection<DragModel> dragModelCollection) {
-
         if(dragModelCollection!= null){
             this.dragsAdapter.setDragsCollection(dragModelCollection);
         }
